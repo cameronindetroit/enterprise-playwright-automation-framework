@@ -1,21 +1,26 @@
 import { test } from "@playwright/test";
 import LoginPage from "../pages/LoginPage";
+import { encrypt, decrypt } from "../utils/CryptojsUtil";
+import { decryptEnvFile, encryptEnvFile } from "../utils/EncryptEnvFile";
 
-test.skip("test", async ({ page }) => {
+test("test", async ({ page }) => {
   const loginPage = new LoginPage(page);
   const serviceTitleSelector = "Service";
 
     await loginPage.navigate();;
-    await loginPage.fillUsername(process.env.userid!);
-    await loginPage.fillPassword(process.env.password!)
+    await loginPage.fillUsername(decrypt(process.env.userid!));
+    await loginPage.fillPassword(decrypt(process.env.password!));
     const homePage = await loginPage.clickLoginButton();
     // await homePage.expectServiceTitleToBeVisible();
-    await page.getByTitle(serviceTitleSelector).waitFor({ state: "visible", timeout: 19000 });
+    await page.getByTitle("Service").waitFor({ state: "visible", timeout: 19000 });
     })
 
-
     test("Sample env test", async ({ page }) => {
-      console.log("Enviornment: ", process.env.NODE_ENV);
-      console.log("USERNAME: ", process.env.userid);
-      console.log("PASSWORD: ", process.env.password);
-    }); 
+// const plainText = "Hello, Mars!";
+// const encryptedText = encrypt(plainText);
+// console.log('SALT:', process.env.SALT);
+// console.log('Encrypted Text:', encryptedText);
+// const decryptedText = decrypt(encryptedText);
+// console.log('Decrypted Text:', decryptedText);
+encryptEnvFile();
+}); 
