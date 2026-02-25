@@ -17,6 +17,7 @@ function resolveCredential(value?: string) {
 
 export const test = base.extend<Fixtures>({
   pageManager: async ({ page }, use) => {
+    const UI_TIMEOUT = 19000;
     const pageManager = new PageManager(page);
     const loginPage = pageManager.getLoginPage();
 
@@ -24,6 +25,8 @@ export const test = base.extend<Fixtures>({
     await loginPage.fillUsername(resolveCredential(process.env.userid));
     await loginPage.fillPassword(resolveCredential(process.env.password));
     await loginPage.clickLoginButton();
+
+    await expect(pageManager.getHomePage().getEventTab()).toBeVisible({ timeout: UI_TIMEOUT });
 
     await use(pageManager);
   },

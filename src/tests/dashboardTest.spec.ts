@@ -1,68 +1,56 @@
-import { test, expect } from "./fixtures.ts";
+import { test, expect } from "./fixtures";
 import logger from "../utils/LoggerUtil";
+import PageManager from "../pages/PageManager";
+
+const UI_TIMEOUT = 19000;
+
+const scenarios = [
+  {
+    name: "Event tab navigation",
+    getTab: (pageManager: PageManager) => pageManager.getHomePage().getEventTab(),
+    navigate: (pageManager: PageManager) => pageManager.getHomePage().navigateToEventTab(),
+    getPageMarker: (pageManager: PageManager) => pageManager.getEventPage().getEventsContainerHeader(),
+  },
+  {
+    name: "ICP tab navigation",
+    getTab: (pageManager: PageManager) => pageManager.getHomePage().getICPTab(),
+    navigate: (pageManager: PageManager) => pageManager.getHomePage().navigateToICPTab(),
+    getPageMarker: (pageManager: PageManager) => pageManager.getICPPage().getEnrichICPButton(),
+  },
+  {
+    name: "Data Request tab navigation",
+    getTab: (pageManager: PageManager) => pageManager.getHomePage().getDataRequestTab(),
+    navigate: (pageManager: PageManager) => pageManager.getHomePage().navigateToDataRequestTab(),
+    getPageMarker: (pageManager: PageManager) => pageManager.getDataRequestPage().getDataRequestContainer(),
+  },
+  {
+    name: "Settings tab navigation",
+    getTab: (pageManager: PageManager) => pageManager.getHomePage().getSettingsTab(),
+    navigate: (pageManager: PageManager) => pageManager.getHomePage().navigateToSettingsTab(),
+    getPageMarker: (pageManager: PageManager) => pageManager.getSettingsPage().getSettingsResetPasswordContainer(),
+  },
+  {
+    name: "FAQ tab navigation",
+    getTab: (pageManager: PageManager) => pageManager.getHomePage().getFAQTab(),
+    navigate: (pageManager: PageManager) => pageManager.getHomePage().navigateToFAQTab(),
+    getPageMarker: (pageManager: PageManager) => pageManager.getFAQPage().getFAQContainer(),
+  },
+  {
+    name: "Feature/Bug Request tab navigation",
+    getTab: (pageManager: PageManager) => pageManager.getHomePage().getFeatureBugRequestTab(),
+    navigate: (pageManager: PageManager) => pageManager.getHomePage().navigateToFeatureBugRequestTab(),
+    getPageMarker: (pageManager: PageManager) => pageManager.getFeatureBugRequestPage().getFeatureBugRequestContainer(),
+  },
+] as const;
  
-test("Event tab navigation", async ({ pageManager }) => {
-  logger.info("Event tab navigation test started...");
-  const homePage = pageManager.getHomePage();
-  const eventPage = pageManager.getEventPage();
-  await expect(homePage.getEventTab()).toBeVisible({ timeout: 19000 });
-  await homePage.navigateToEventTab();
-  await expect(eventPage.getEventsContainerHeader()).toBeVisible({ timeout: 19000 });
+for (const scenario of scenarios) {
+  test(scenario.name, async ({ pageManager }) => {
+    logger.info(`${scenario.name} test started...`);
 
-  logger.info("Event tab navigation test completed");
-});
+    await expect(scenario.getTab(pageManager)).toBeVisible({ timeout: UI_TIMEOUT });
+    await scenario.navigate(pageManager);
+    await expect(scenario.getPageMarker(pageManager)).toBeVisible({ timeout: UI_TIMEOUT });
 
-test("ICP tab navigation", async ({ pageManager }) => {
-  logger.info("ICP tab navigation test started...");
-  const homePage = pageManager.getHomePage();
-  const icpPage = pageManager.getICPPage();
-  await expect(homePage.getICPTab()).toBeVisible({ timeout: 19000 });
-  await homePage.navigateToICPTab();
-  await expect(icpPage.getEnrichICPButton()).toBeVisible({ timeout: 19000 });
-
-  logger.info("ICP tab navigation test completed");
-});
-
-test("Data Request tab navigation", async ({ pageManager }) => {
-  logger.info("Data Request tab navigation test started...");
-  const homePage = pageManager.getHomePage();
-  const dataRequestPage = pageManager.getDataRequestPage();
-  await expect(homePage.getDataRequestTab()).toBeVisible({ timeout: 19000 });
-  await homePage.navigateToDataRequestTab();
-  await expect(dataRequestPage.getDataRequestContainer()).toBeVisible({ timeout: 19000 });
-
-  logger.info("Data Request tab navigation test completed");
-});
-
-test("Settings tab navigation", async ({ pageManager }) => {
-  logger.info("Settings tab navigation test started...");
-  const homePage = pageManager.getHomePage();
-  const settingsPage = pageManager.getSettingsPage();
-  await expect(homePage.getSettingsTab()).toBeVisible({ timeout: 19000 });
-  await homePage.navigateToSettingsTab();
-  await expect(settingsPage.getSettingsResetPasswordContainer()).toBeVisible({ timeout: 19000 });
-
-  logger.info("Settings tab navigation test completed");
-});
-
-test("FAQ tab navigation", async ({ pageManager }) => {
-  logger.info("FAQ tab navigation test started...");
-  const homePage = pageManager.getHomePage();
-  const faqPage = pageManager.getFAQPage();
-  await expect(homePage.getFAQTab()).toBeVisible({ timeout: 19000 });
-  await homePage.navigateToFAQTab();
-  await expect(faqPage.getFAQContainer()).toBeVisible({ timeout: 19000 });
-  
-  logger.info("FAQ tab navigation test completed");
-});
-
-test("Feature/Bug Request tab navigation", async ({ pageManager }) => {
-  logger.info("Feature/Bug Request tab navigation test started...");
-  const homePage = pageManager.getHomePage();
-  const featureBugRequestPage = pageManager.getFeatureBugRequestPage();
-  await expect(featureBugRequestPage.getFeatureBugRequestContainer()).toBeVisible({ timeout: 19000 });
-  await homePage.navigateToFeatureBugRequestTab();
-  await expect(featureBugRequestPage.getFeatureBugRequestContainer()).toBeVisible({ timeout: 19000 });
-  
-  logger.info("Feature/Bug Request tab navigation test completed");
-});
+    logger.info(`${scenario.name} test completed`);
+  });
+}

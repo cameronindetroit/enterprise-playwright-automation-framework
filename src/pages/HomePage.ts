@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, Locator } from "@playwright/test";
 import logger from "../utils/LoggerUtil";
 
 export default class HomePage {
@@ -38,64 +38,39 @@ export default class HomePage {
         return this.page.getByText(this.featureBugRequestTabLocator, { exact: true }).first();
     }
 
-    async navigateToEventTab() {
-        const eventTab = this.getEventTab();
-
-        logger.info("Navigating to Event tab");
-        await eventTab.click().catch((error) => {
-            logger.error(`Error clicking Event tab: ${error}`);
+    private async clickTab(tab: Locator, tabName: string) {
+        logger.info(`Navigating to ${tabName} tab`);
+        try {
+            await tab.click();
+            logger.info(`Clicked on ${tabName} tab`);
+        } catch (error) {
+            logger.error(`Error clicking ${tabName} tab: ${error}`);
             throw error;
-        }).then(() => logger.info("Clicked on Event tab"));
+        }
+    }
+
+    async navigateToEventTab() {
+        await this.clickTab(this.getEventTab(), "Event");
     }
 
     async navigateToICPTab() {
-        const icpTab = this.getICPTab();
-
-        logger.info("Navigating to ICP tab");
-        await icpTab.click().catch((error) => {
-            logger.error(`Error clicking ICP tab: ${error}`);
-            throw error;
-        }).then(() => logger.info("Clicked on ICP tab"));
+        await this.clickTab(this.getICPTab(), "ICP");
     }
 
     async navigateToDataRequestTab() {
-        const dataRequestTab = this.getDataRequestTab();
-
-        logger.info("Navigating to Data Request tab");
-        await dataRequestTab.click().catch((error) => {
-            logger.error(`Error clicking Data Request tab: ${error}`);
-            throw error;
-        }).then(() => logger.info("Clicked on Data Request tab"));
+        await this.clickTab(this.getDataRequestTab(), "Data Request");
     }
 
     async navigateToSettingsTab() {
-        const settingsTab = this.getSettingsTab();
-
-        logger.info("Navigating to Settings tab");
-        await settingsTab.click().catch((error) => {
-            logger.error(`Error clicking Settings tab: ${error}`);
-            throw error;
-        }).then(() => logger.info("Clicked on Settings tab"));
+        await this.clickTab(this.getSettingsTab(), "Settings");
     }
 
     async navigateToFAQTab() {
-        const faqTab = this.getFAQTab();
-
-        logger.info("Navigating to FAQ tab");
-        await faqTab.click().catch((error) => {
-            logger.error(`Error clicking FAQ tab: ${error}`);
-            throw error;
-        }).then(() => logger.info("Clicked on FAQ tab"));
+        await this.clickTab(this.getFAQTab(), "FAQ");
     }
 
     async navigateToFeatureBugRequestTab() {
-        const featureBugRequestTab = this.getFeatureBugRequestTab();
-
-        logger.info("Navigating to Feature/Bug Request tab");
-        await featureBugRequestTab.click().catch((error) => {
-            logger.error(`Error clicking Feature/Bug Request tab: ${error}`);
-            throw error;
-        }).then(() => logger.info("Clicked on Feature/Bug Request tab"));
+        await this.clickTab(this.getFeatureBugRequestTab(), "Feature/Bug Request");
     }
 
 }

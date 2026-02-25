@@ -1,8 +1,8 @@
-# Enterprise Test Automation Framework for AUT (HoneycompICP)
+# Enterprise Test Automation Framework for (HoneycompICP)
 
 ## 1. Overview
 
-The enterprise test automation framework is designed to provide a robust, scalable, and feature-rich solution for automated testing of the Salesforce application (AUT). The framework encompasses various features, including data-driven testing, logging, retry mechanism, self-healing, cross-browser testing, multiple enviornments, password encryption, code quality, CI/CD integration, reusable utilities, data generation, parallel testing, and API mocking/testing. 
+The enterprise test automation framework is designed to provide a robust, scalable, and feature-rich solution for automated testing of the HoneycombICP application (HoneycombICP). The framework encompasses various features, including data-driven testing, logging, retry mechanism, self-healing, cross-browser testing, multiple enviornments, password encryption, code quality, CI/CD integration, reusable utilities, data generation, parallel testing, and API mocking/testing. 
 
 ## 2. Features
 
