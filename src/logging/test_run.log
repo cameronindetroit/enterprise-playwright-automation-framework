@@ -339,3 +339,334 @@ Call log:
 2026-02-25T22:50:49+05:30 [info]: Event tab is visible
 2026-02-25T22:50:49+05:30 [info]: Clicked on Event tab
 2026-02-25T22:50:49+05:30 [info]: Event tab navigation test completed
+2026-02-25T22:57:46+05:30 [info]: Event tab navigation test started...
+2026-02-25T22:57:46+05:30 [info]: ICP tab navigation test started...
+2026-02-25T22:57:51+05:30 [info]: ICP tab is visible
+2026-02-25T22:57:51+05:30 [info]: Clicked on ICP tab
+2026-02-25T22:57:51+05:30 [info]: ICP tab navigation test completed
+2026-02-25T22:57:51+05:30 [info]: Event tab is visible
+2026-02-25T22:57:52+05:30 [info]: Clicked on Event tab
+2026-02-25T22:57:52+05:30 [info]: Event tab navigation test completed
+2026-02-25T22:59:24+05:30 [info]: Data Request tab navigation test started...
+2026-02-25T22:59:24+05:30 [info]: Event tab navigation test started...
+2026-02-25T22:59:24+05:30 [info]: Settings tab navigation test started...
+2026-02-25T22:59:24+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T22:59:24+05:30 [info]: ICP tab navigation test started...
+2026-02-25T22:59:24+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-25T22:59:31+05:30 [info]: Navigating to Data Request tab
+2026-02-25T22:59:31+05:30 [info]: Navigating to FAQ tab
+2026-02-25T22:59:32+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-25T22:59:32+05:30 [info]: Navigating to ICP tab
+2026-02-25T22:59:32+05:30 [info]: Navigating to Settings tab
+2026-02-25T22:59:32+05:30 [info]: Clicked on FAQ tab
+2026-02-25T22:59:32+05:30 [info]: Clicked on Data Request tab
+2026-02-25T22:59:32+05:30 [info]: Clicked on ICP tab
+2026-02-25T22:59:32+05:30 [info]: ICP tab navigation test completed
+2026-02-25T22:59:32+05:30 [info]: Clicked on Settings tab
+2026-02-25T22:59:32+05:30 [info]: Settings tab navigation test completed
+2026-02-25T22:59:32+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-25T22:59:32+05:30 [info]: Feature/Bug Request tab navigation test completed
+2026-02-25T22:59:32+05:30 [info]: Data Request tab navigation test completed
+2026-02-25T22:59:32+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T22:59:33+05:30 [info]: Navigating to Event tab
+2026-02-25T22:59:33+05:30 [info]: Clicked on Event tab
+2026-02-25T22:59:33+05:30 [info]: Event tab navigation test completed
+2026-02-25T23:03:32+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:03:32+05:30 [info]: Event tab navigation test started...
+2026-02-25T23:03:32+05:30 [info]: Data Request tab navigation test started...
+2026-02-25T23:03:32+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:03:32+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-25T23:03:32+05:30 [info]: Settings tab navigation test started...
+2026-02-25T23:03:35+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:03:37+05:30 [info]: Event tab navigation test started...
+2026-02-25T23:03:40+05:30 [info]: Navigating to Event tab
+2026-02-25T23:03:40+05:30 [info]: Clicked on Event tab
+2026-02-25T23:03:40+05:30 [info]: Event tab navigation test completed
+2026-02-25T23:03:40+05:30 [info]: Navigating to Data Request tab
+2026-02-25T23:03:40+05:30 [info]: Navigating to Settings tab
+2026-02-25T23:03:40+05:30 [info]: Clicked on Data Request tab
+2026-02-25T23:03:40+05:30 [info]: Clicked on Settings tab
+2026-02-25T23:03:40+05:30 [info]: Data Request tab navigation test completed
+2026-02-25T23:03:40+05:30 [info]: Settings tab navigation test completed
+2026-02-25T23:03:41+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:03:41+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-25T23:03:41+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:03:41+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-25T23:03:41+05:30 [info]: ICP tab navigation test completed
+2026-02-25T23:03:41+05:30 [info]: Feature/Bug Request tab navigation test completed
+2026-02-25T23:03:41+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:03:42+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:03:42+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T23:03:43+05:30 [info]: Navigating to Event tab
+2026-02-25T23:03:43+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:03:43+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:03:43+05:30 [info]: ICP tab navigation test completed
+2026-02-25T23:03:43+05:30 [info]: Clicked on Event tab
+2026-02-25T23:03:43+05:30 [info]: Event tab navigation test completed
+2026-02-25T23:03:45+05:30 [info]: Event tab navigation test started...
+2026-02-25T23:03:45+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:03:45+05:30 [info]: Data Request tab navigation test started...
+2026-02-25T23:03:47+05:30 [info]: Data Request tab navigation test started...
+2026-02-25T23:03:47+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-25T23:03:47+05:30 [info]: Settings tab navigation test started...
+2026-02-25T23:03:48+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:03:52+05:30 [info]: Settings tab navigation test started...
+2026-02-25T23:03:54+05:30 [info]: Navigating to Event tab
+2026-02-25T23:03:54+05:30 [info]: Clicked on Event tab
+2026-02-25T23:03:54+05:30 [info]: Event tab navigation test completed
+2026-02-25T23:03:55+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:03:55+05:30 [info]: Navigating to Data Request tab
+2026-02-25T23:03:55+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:03:56+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:03:56+05:30 [info]: ICP tab navigation test completed
+2026-02-25T23:03:56+05:30 [info]: Clicked on Data Request tab
+2026-02-25T23:03:56+05:30 [info]: Data Request tab navigation test completed
+2026-02-25T23:03:57+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-25T23:03:58+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-25T23:03:58+05:30 [info]: Navigating to Settings tab
+2026-02-25T23:03:58+05:30 [info]: Navigating to Data Request tab
+2026-02-25T23:03:58+05:30 [info]: Clicked on Settings tab
+2026-02-25T23:03:58+05:30 [info]: Settings tab navigation test completed
+2026-02-25T23:03:58+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-25T23:03:58+05:30 [info]: Feature/Bug Request tab navigation test completed
+2026-02-25T23:03:58+05:30 [info]: Clicked on Data Request tab
+2026-02-25T23:03:58+05:30 [info]: Data Request tab navigation test completed
+2026-02-25T23:03:59+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:04:00+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:04:00+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T23:04:01+05:30 [info]: Navigating to Settings tab
+2026-02-25T23:04:01+05:30 [info]: Clicked on Settings tab
+2026-02-25T23:04:02+05:30 [info]: Settings tab navigation test completed
+2026-02-25T23:04:04+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:04:04+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:04:04+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T23:04:05+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-25T23:04:05+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-25T23:04:05+05:30 [info]: Feature/Bug Request tab navigation test completed
+2026-02-25T23:07:28+05:30 [info]: Event tab navigation test started...
+2026-02-25T23:07:28+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:07:28+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:07:28+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-25T23:07:28+05:30 [info]: Settings tab navigation test started...
+2026-02-25T23:07:28+05:30 [info]: Data Request tab navigation test started...
+2026-02-25T23:08:37+05:30 [info]: Event tab navigation test started...
+2026-02-25T23:08:37+05:30 [info]: Data Request tab navigation test started...
+2026-02-25T23:08:37+05:30 [info]: Settings tab navigation test started...
+2026-02-25T23:08:37+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:08:37+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-25T23:08:37+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:11:37+05:30 [info]: Settings tab navigation test started...
+2026-02-25T23:11:37+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-25T23:11:37+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:11:37+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:11:37+05:30 [info]: Data Request tab navigation test started...
+2026-02-25T23:11:37+05:30 [info]: Event tab navigation test started...
+2026-02-25T23:11:46+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:11:46+05:30 [info]: Navigating to Event tab
+2026-02-25T23:11:47+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:11:47+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T23:11:47+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-25T23:11:47+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-25T23:11:47+05:30 [info]: Clicked on Event tab
+2026-02-25T23:11:47+05:30 [info]: Feature/Bug Request tab navigation test completed
+2026-02-25T23:11:47+05:30 [info]: Event tab navigation test completed
+2026-02-25T23:11:47+05:30 [info]: Navigating to Settings tab
+2026-02-25T23:11:47+05:30 [info]: Clicked on Settings tab
+2026-02-25T23:11:47+05:30 [info]: Settings tab navigation test completed
+2026-02-25T23:11:48+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:11:48+05:30 [info]: Navigating to Data Request tab
+2026-02-25T23:11:48+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:11:48+05:30 [info]: ICP tab navigation test completed
+2026-02-25T23:11:48+05:30 [info]: Clicked on Data Request tab
+2026-02-25T23:11:48+05:30 [info]: Data Request tab navigation test completed
+2026-02-25T23:20:11+05:30 [info]: Event tab navigation test started...
+2026-02-25T23:20:16+05:30 [info]: Navigating to Event tab
+2026-02-25T23:20:16+05:30 [info]: Clicked on Event tab
+2026-02-25T23:20:16+05:30 [info]: Event tab navigation test completed
+2026-02-25T23:22:48+05:30 [info]: Event tab navigation test started...
+2026-02-25T23:22:53+05:30 [info]: Navigating to Event tab
+2026-02-25T23:22:53+05:30 [info]: Clicked on Event tab
+2026-02-25T23:22:58+05:30 [info]: Event tab navigation test completed
+2026-02-25T23:26:04+05:30 [info]: Event tab navigation test started...
+2026-02-25T23:26:50+05:30 [info]: Navigating to Event tab
+2026-02-25T23:26:53+05:30 [info]: Clicked on Event tab
+2026-02-25T23:27:02+05:30 [info]: Event tab navigation test completed
+2026-02-25T23:27:18+05:30 [info]: Event tab navigation test started...
+2026-02-25T23:27:24+05:30 [info]: Navigating to Event tab
+2026-02-25T23:27:25+05:30 [info]: Clicked on Event tab
+2026-02-25T23:27:30+05:30 [info]: Event tab navigation test completed
+2026-02-25T23:27:35+05:30 [info]: Event tab navigation test started...
+2026-02-25T23:27:41+05:30 [info]: Navigating to Event tab
+2026-02-25T23:27:41+05:30 [info]: Clicked on Event tab
+2026-02-25T23:27:46+05:30 [info]: Event tab navigation test completed
+2026-02-25T23:30:29+05:30 [info]: Event tab navigation test started...
+2026-02-25T23:30:40+05:30 [info]: Navigating to Event tab
+2026-02-25T23:30:41+05:30 [info]: Clicked on Event tab
+2026-02-25T23:30:47+05:30 [info]: Event tab navigation test completed
+2026-02-25T23:30:58+05:30 [info]: Event tab navigation test started...
+2026-02-25T23:31:04+05:30 [info]: Navigating to Event tab
+2026-02-25T23:31:04+05:30 [info]: Clicked on Event tab
+2026-02-25T23:31:09+05:30 [info]: Event tab navigation test completed
+2026-02-25T23:31:13+05:30 [info]: Event tab navigation test started...
+2026-02-25T23:31:21+05:30 [info]: Navigating to Event tab
+2026-02-25T23:31:21+05:30 [info]: Clicked on Event tab
+2026-02-25T23:31:26+05:30 [info]: Event tab navigation test completed
+2026-02-25T23:34:15+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:34:21+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:34:21+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:35:35+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:35:40+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:35:40+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:35:46+05:30 [info]: ICP tab navigation test completed
+2026-02-25T23:36:48+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:36:49+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:36:51+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:36:54+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:36:55+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:36:55+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:36:56+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:36:58+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:36:58+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:37:10+05:30 [info]: ICP tab navigation test completed
+2026-02-25T23:37:10+05:30 [info]: ICP tab navigation test completed
+2026-02-25T23:37:10+05:30 [info]: ICP tab navigation test completed
+2026-02-25T23:39:37+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:39:48+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:39:49+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:39:56+05:30 [info]: ICP tab navigation test completed
+2026-02-25T23:40:17+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:40:25+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:40:25+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:40:29+05:30 [info]: ICP tab navigation test completed
+2026-02-25T23:40:33+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:40:40+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:40:40+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:40:44+05:30 [info]: ICP tab navigation test completed
+2026-02-25T23:40:54+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:40:54+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:40:56+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:40:59+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:40:59+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:41:00+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:41:00+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:41:02+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:41:02+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:41:13+05:30 [info]: ICP tab navigation test completed
+2026-02-25T23:41:13+05:30 [info]: ICP tab navigation test completed
+2026-02-25T23:41:13+05:30 [info]: ICP tab navigation test completed
+2026-02-25T23:41:34+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:41:50+05:30 [info]: Navigating to ICP tab
+2026-02-25T23:41:51+05:30 [info]: Clicked on ICP tab
+2026-02-25T23:41:54+05:30 [info]: ICP tab navigation test completed
+2026-02-25T23:42:01+05:30 [info]: ICP tab navigation test started...
+2026-02-25T23:44:48+05:30 [info]: Data Request tab navigation test started...
+2026-02-25T23:45:00+05:30 [info]: Navigating to Data Request tab
+2026-02-25T23:45:01+05:30 [info]: Clicked on Data Request tab
+2026-02-25T23:45:03+05:30 [info]: Data Request tab navigation test completed
+2026-02-25T23:45:11+05:30 [info]: Data Request tab navigation test started...
+2026-02-25T23:45:16+05:30 [info]: Navigating to Data Request tab
+2026-02-25T23:45:17+05:30 [info]: Clicked on Data Request tab
+2026-02-25T23:45:17+05:30 [info]: Data Request tab navigation test completed
+2026-02-25T23:45:21+05:30 [info]: Data Request tab navigation test started...
+2026-02-25T23:45:28+05:30 [info]: Navigating to Data Request tab
+2026-02-25T23:45:28+05:30 [info]: Clicked on Data Request tab
+2026-02-25T23:45:29+05:30 [info]: Data Request tab navigation test completed
+2026-02-25T23:48:40+05:30 [info]: Settings tab navigation test started...
+2026-02-25T23:48:55+05:30 [info]: Navigating to Settings tab
+2026-02-25T23:48:57+05:30 [info]: Clicked on Settings tab
+2026-02-25T23:48:59+05:30 [info]: Settings tab navigation test completed
+2026-02-25T23:49:05+05:30 [info]: Settings tab navigation test started...
+2026-02-25T23:49:11+05:30 [info]: Navigating to Settings tab
+2026-02-25T23:49:11+05:30 [info]: Clicked on Settings tab
+2026-02-25T23:49:12+05:30 [info]: Settings tab navigation test completed
+2026-02-25T23:49:16+05:30 [info]: Settings tab navigation test started...
+2026-02-25T23:49:22+05:30 [info]: Navigating to Settings tab
+2026-02-25T23:49:22+05:30 [info]: Clicked on Settings tab
+2026-02-25T23:49:22+05:30 [info]: Settings tab navigation test completed
+2026-02-25T23:51:17+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:51:34+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:51:37+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:51:39+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T23:51:45+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:51:51+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:51:51+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:51:51+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T23:51:55+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:52:01+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:52:01+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:52:01+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T23:53:09+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:53:09+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:53:11+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:53:15+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:53:15+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:53:15+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T23:53:15+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:53:16+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:53:16+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T23:53:17+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:53:17+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:53:17+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T23:56:06+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:56:06+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:56:08+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:56:12+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:56:12+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:56:13+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:56:13+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:56:14+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T23:56:14+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T23:56:15+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:56:15+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:56:16+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T23:56:58+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:57:09+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:57:10+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:57:14+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T23:57:23+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:57:36+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:57:38+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:57:58+05:30 [info]: FAQ tab navigation test completed
+2026-02-25T23:58:06+05:30 [info]: FAQ tab navigation test started...
+2026-02-25T23:58:16+05:30 [info]: Navigating to FAQ tab
+2026-02-25T23:58:17+05:30 [info]: Clicked on FAQ tab
+2026-02-25T23:58:19+05:30 [info]: FAQ tab navigation test completed
+2026-02-26T00:00:20+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-26T00:00:34+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T00:00:36+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T00:00:39+05:30 [info]: Feature/Bug Request tab navigation test completed
+2026-02-26T00:00:48+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-26T00:01:07+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T00:01:09+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T00:01:12+05:30 [info]: Feature/Bug Request tab navigation test completed
+2026-02-26T00:01:18+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-26T00:01:30+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T00:01:32+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T00:01:33+05:30 [info]: Feature/Bug Request tab navigation test completed
+2026-02-26T00:03:11+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-26T00:04:23+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T00:04:27+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T00:04:29+05:30 [info]: Feature/Bug Request tab navigation test completed
+2026-02-26T00:04:36+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-26T00:04:42+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T00:04:43+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T00:04:43+05:30 [info]: Feature/Bug Request tab navigation test completed
+2026-02-26T00:04:46+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-26T00:04:54+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T00:04:55+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T00:04:55+05:30 [info]: Feature/Bug Request tab navigation test completed
+2026-02-26T00:20:42+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-26T00:20:42+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-26T00:20:44+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-26T00:21:59+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-26T00:22:12+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T00:22:13+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T00:22:15+05:30 [info]: Feature/Bug Request tab navigation test completed
+2026-02-26T00:22:22+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-26T00:22:28+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T00:22:29+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T00:22:29+05:30 [info]: Feature/Bug Request tab navigation test completed
+2026-02-26T00:22:32+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-26T00:22:39+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T00:22:39+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T00:22:39+05:30 [info]: Feature/Bug Request tab navigation test completed

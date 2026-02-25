@@ -1,0 +1,7 @@
+[     398ms] [WARNING] [LaunchDarkly] Error on stream connection: {"isTrusted":true}, will continue retrying after 904 milliseconds. @ https://runtime-assets.adalo.com/static/js/main.79e9a9ca.js:1
+[    1447ms] [WARNING] No deep link configuration found for alias "honeycombicp" @ https://runtime-assets.adalo.com/static/js/main.79e9a9ca.js:1
+[   61286ms] [WARNING] Animated: `useNativeDriver` is not supported because the native animated module is missing. Falling back to JS-based animation. To resolve this, add `RCTAnimation` module to this app, or remove `useNativeDriver`. Make sure to run `bundle exec pod install` first. Read more about autolinking: https://github.com/react-native-community/cli/blob/master/docs/autolinking.md @ https://runtime-assets.adalo.com/static/js/main.79e9a9ca.js:1
+[   62028ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ https://database-red.adalo.com/databases/a1ab1856443b44fcbe8d838f7fcfa88b/sessions/external_login:0
+[   62030ms] [ERROR] AUTHENTICATE EXTERNAL ERROR!  V @ https://runtime-assets.adalo.com/static/js/main.79e9a9ca.js:1
+[   98054ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ https://database-red.adalo.com/databases/a1ab1856443b44fcbe8d838f7fcfa88b/sessions/external_login:0
+[   98056ms] [ERROR] AUTHENTICATE EXTERNAL ERROR!  V @ https://runtime-assets.adalo.com/static/js/main.79e9a9ca.js:1

@@ -1,0 +1,15 @@
+- generic [ref=e8]:
+  - generic [ref=e11]: Screen Missing
+  - generic [ref=e20]:
+    - generic:
+      - generic:
+        - generic [ref=e25]:
+          - textbox "Email" [ref=e27]
+          - textbox "Password" [ref=e29]
+          - generic [ref=e33] [cursor=pointer]:
+            - generic: Sign In
+          - generic [ref=e36]: Sign in to your account below.
+          - generic [ref=e41] [cursor=pointer]: Forgot Password?
+          - generic [ref=e46] [cursor=pointer]: Have a new Account? Complete Setup. Or reset password with your reset code.
+        - generic [ref=e69]: Welcome back to
+        - generic [ref=e72]: HoneycombICP
