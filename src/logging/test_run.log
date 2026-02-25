@@ -1,1 +1,325 @@
 2026-01-09T04:41:37+05:30 [info]: Test for login is completed
+2026-01-11T22:22:21+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:22:22+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:22:23+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:22:44+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:22:46+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+[2m    - waiting for" https://orgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com/_ui/identity/verification/method/EmailVerificationFinishUi/e" navigation to finish...[22m
+[2m    - navigated to "https://orgfarm-1d42c03bde-dev-ed.develop.file.force.com/secur/contentDoor?startURL=https%3A%2F%2Forgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com%2Fone%2Fone.app&sid=00Dg5000002wIEj%21AQEAQEe9lvy…"[22m
+[2m    - waiting for" https://orgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com/one/one.app" navigation to finish...[22m
+[2m    - navigated to "https://orgfarm-1d42c03bde-dev-ed.develop.lightning.force.com/one/one.app"[22m
+
+2026-01-11T22:22:46+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:24:22+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:24:22+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:24:23+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:24:43+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+[2m    - waiting for navigation to finish...[22m
+[2m    - navigated to "https://orgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com/_ui/identity/verification/method/EmailVerificationFinishUi/e?vcsrf=tWoYJVF9A7Wrb7NF0ZZvNmayqiXMNJvngR_SMLh2cQ17kVcQrloRalMBW62BYnKn7RQS9PKa…"[22m
+
+2026-01-11T22:24:45+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+[2m    - waiting for" https://orgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com/_ui/identity/verification/method/EmailVerificationFinishUi/e" navigation to finish...[22m
+[2m    - navigated to "https://orgfarm-1d42c03bde-dev-ed.develop.file.force.com/secur/contentDoor?startURL=https%3A%2F%2Forgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com%2Fone%2Fone.app&sid=00Dg5000002wIEj%21AQEAQGbUkGe…"[22m
+
+2026-01-11T22:24:45+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:25:05+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:25:05+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:25:07+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:25:24+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:25:24+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:25:24+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:25:31+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:25:31+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:25:32+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:25:44+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:25:44+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:25:44+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:25:51+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:25:52+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:25:53+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:26:14+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:26:15+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+[2m    - waiting for" https://orgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com/_ui/identity/verification/method/EmailVerificationFinishUi/e" navigation to finish...[22m
+[2m    - navigated to "https://orgfarm-1d42c03bde-dev-ed.develop.file.force.com/secur/contentDoor?startURL=https%3A%2F%2Forgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com%2Fone%2Fone.app&sid=00Dg5000002wIEj%21AQEAQAqTgPL…"[22m
+[2m    - waiting for" https://orgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com/one/one.app" navigation to finish...[22m
+[2m    - navigated to "https://orgfarm-1d42c03bde-dev-ed.develop.lightning.force.com/one/one.app"[22m
+
+2026-01-11T22:26:15+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:26:47+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:26:47+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:26:48+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:32:47+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:32:47+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:32:47+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:32:47+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:32:50+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:32:51+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:33:55+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:33:55+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:33:55+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:33:56+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:33:58+05:30 [info]: Test for Contact Creation is started...
+2026-01-11T22:33:59+05:30 [info]: Test for Contact Creation is started...
+2026-02-25T21:44:25+05:30 [info]: Test for login is completed
+2026-02-25T21:44:38+05:30 [info]: Test for login is completed
+2026-02-25T21:44:39+05:30 [info]: Test for login is completed
+2026-02-25T21:44:40+05:30 [info]: Test for login is completed
+2026-02-25T21:49:45+05:30 [info]: Test for login is completed
+2026-02-25T21:49:46+05:30 [info]: Test for login is completed
+2026-02-25T21:49:48+05:30 [info]: Test for login is completed
+2026-02-25T21:50:11+05:30 [info]: Test for login is completed
+2026-02-25T21:50:12+05:30 [info]: Test for login is completed
+2026-02-25T21:50:14+05:30 [info]: Test for login is completed
+2026-02-25T21:50:55+05:30 [info]: Test for login is completed
+2026-02-25T21:50:55+05:30 [info]: Test for login is completed
+2026-02-25T21:50:57+05:30 [info]: Test for login is completed
+2026-02-25T21:52:05+05:30 [info]: Test for login is completed
+2026-02-25T21:52:05+05:30 [info]: Test for login is completed
+2026-02-25T21:52:07+05:30 [info]: Test for login is completed
+2026-02-25T21:53:00+05:30 [info]: Test for login is completed
+2026-02-25T21:53:13+05:30 [info]: Test for login is completed
+2026-02-25T21:53:25+05:30 [info]: Test for login is completed
+2026-02-25T21:55:27+05:30 [info]: Test for login is completed
+2026-02-25T21:56:35+05:30 [info]: Test for login is completed
+2026-02-25T21:59:33+05:30 [info]: Test for login is completed
+2026-02-25T21:59:50+05:30 [info]: Test for login is completed
+2026-02-25T21:59:58+05:30 [info]: Test for login is completed
+2026-02-25T22:03:50+05:30 [info]: Test for login is completed
+2026-02-25T22:03:50+05:30 [info]: Test for login is completed
+2026-02-25T22:03:50+05:30 [info]: Test for login is completed
+2026-02-25T22:04:20+05:30 [info]: Test for login is completed
+2026-02-25T22:07:23+05:30 [info]: Test for login is completed
+2026-02-25T22:07:24+05:30 [info]: Test for login is completed
+2026-02-25T22:07:25+05:30 [info]: Test for login is completed
+2026-02-25T22:09:43+05:30 [info]: Test for login is completed
+2026-02-25T22:09:43+05:30 [info]: Test for login is completed
+2026-02-25T22:09:44+05:30 [info]: Test for login is completed
+2026-02-25T22:10:41+05:30 [info]: Test for login is completed
+2026-02-25T22:11:04+05:30 [info]: Test for login is completed
+2026-02-25T22:11:16+05:30 [info]: Test for login is completed
+2026-02-25T22:16:54+05:30 [info]: Test for login is completed
+2026-02-25T22:17:08+05:30 [info]: Test for login is completed
+2026-02-25T22:17:20+05:30 [info]: Test for login is completed
+2026-02-25T22:19:59+05:30 [info]: Test for login is completed
+2026-02-25T22:20:28+05:30 [info]: Test for login is completed
+2026-02-25T22:20:41+05:30 [info]: Test for login is completed
+2026-02-25T22:32:01+05:30 [info]: Event tab navigation test started...
+2026-02-25T22:32:09+05:30 [error]: Error verifying Event tab visibility: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByRole('link', { name: /Events?/i }).first()
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 5000ms[22m
+[2m  - waiting for getByRole('link', { name: /Events?/i }).first()[22m
+
+2026-02-25T22:32:37+05:30 [info]: Event tab navigation test started...
+2026-02-25T22:32:42+05:30 [info]: Event tab is visible
+2026-02-25T22:32:42+05:30 [info]: Clicked on Event tab
+2026-02-25T22:32:42+05:30 [info]: Event tab navigation test completed
+2026-02-25T22:33:04+05:30 [info]: Event tab navigation test started...
+2026-02-25T22:33:17+05:30 [info]: Event tab is visible
+2026-02-25T22:33:18+05:30 [info]: Clicked on Event tab
+2026-02-25T22:33:22+05:30 [info]: Event tab navigation test completed
+2026-02-25T22:33:29+05:30 [info]: Event tab navigation test started...
+2026-02-25T22:33:56+05:30 [error]: Error verifying Event tab visibility: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByText('Events', { exact: true }).first()
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 5000ms[22m
+[2m  - waiting for getByText('Events', { exact: true }).first()[22m
+
+2026-02-25T22:35:54+05:30 [info]: Event tab navigation test started...
+2026-02-25T22:36:03+05:30 [info]: Event tab is visible
+2026-02-25T22:36:03+05:30 [info]: Clicked on Event tab
+2026-02-25T22:36:03+05:30 [info]: Event tab navigation test completed
+2026-02-25T22:36:09+05:30 [info]: Event tab navigation test started...
+2026-02-25T22:36:16+05:30 [info]: Event tab is visible
+2026-02-25T22:36:16+05:30 [info]: Clicked on Event tab
+2026-02-25T22:36:16+05:30 [info]: Event tab navigation test completed
+2026-02-25T22:36:20+05:30 [info]: Event tab navigation test started...
+2026-02-25T22:36:28+05:30 [info]: Event tab is visible
+2026-02-25T22:36:28+05:30 [info]: Clicked on Event tab
+2026-02-25T22:36:28+05:30 [info]: Event tab navigation test completed
+2026-02-25T22:36:58+05:30 [info]: Event tab navigation test started...
+2026-02-25T22:37:09+05:30 [info]: Event tab is visible
+2026-02-25T22:37:09+05:30 [info]: Clicked on Event tab
+2026-02-25T22:37:09+05:30 [info]: Event tab navigation test completed
+2026-02-25T22:37:14+05:30 [info]: Event tab navigation test started...
+2026-02-25T22:37:20+05:30 [info]: Event tab is visible
+2026-02-25T22:37:20+05:30 [info]: Clicked on Event tab
+2026-02-25T22:37:20+05:30 [info]: Event tab navigation test completed
+2026-02-25T22:37:24+05:30 [info]: Event tab navigation test started...
+2026-02-25T22:37:35+05:30 [info]: Event tab is visible
+2026-02-25T22:37:35+05:30 [info]: Clicked on Event tab
+2026-02-25T22:37:35+05:30 [info]: Event tab navigation test completed
+2026-02-25T22:43:37+05:30 [info]: Event tab navigation test started...
+2026-02-25T22:43:37+05:30 [info]: Event tab navigation test started...
+2026-02-25T22:43:39+05:30 [info]: Event tab navigation test started...
+2026-02-25T22:43:43+05:30 [info]: Event tab is visible
+2026-02-25T22:43:43+05:30 [info]: Clicked on Event tab
+2026-02-25T22:43:43+05:30 [info]: Event tab navigation test completed
+2026-02-25T22:43:43+05:30 [info]: Event tab is visible
+2026-02-25T22:43:43+05:30 [info]: Clicked on Event tab
+2026-02-25T22:43:43+05:30 [info]: Event tab navigation test completed
+2026-02-25T22:43:45+05:30 [info]: Event tab is visible
+2026-02-25T22:43:45+05:30 [info]: Clicked on Event tab
+2026-02-25T22:43:45+05:30 [info]: Event tab navigation test completed
+2026-02-25T22:44:51+05:30 [info]: ICP tab navigation test started...
+2026-02-25T22:45:04+05:30 [info]: ICP tab is visible
+2026-02-25T22:45:06+05:30 [info]: Clicked on ICP tab
+2026-02-25T22:45:11+05:30 [info]: ICP tab navigation test completed
+2026-02-25T22:45:17+05:30 [info]: ICP tab navigation test started...
+2026-02-25T22:45:36+05:30 [info]: ICP tab is visible
+2026-02-25T22:45:42+05:30 [info]: Clicked on ICP tab
+2026-02-25T22:45:43+05:30 [info]: ICP tab navigation test completed
+2026-02-25T22:45:49+05:30 [info]: ICP tab navigation test started...
+2026-02-25T22:45:58+05:30 [info]: ICP tab is visible
+2026-02-25T22:46:00+05:30 [info]: Clicked on ICP tab
+2026-02-25T22:46:06+05:30 [info]: ICP tab navigation test completed

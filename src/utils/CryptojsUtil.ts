@@ -1,7 +1,8 @@
 // Include Crypto library (make sure to install it via npm if you haven't already)
 // You can download it from: https//cryptojs.gitbook.io/docs/
-let CryptoJSUtil = require("crypto-js");
+import CryptoJS from "crypto-js";
 
+const CryptoJSUtil = CryptoJS;
 
 // Get the SALT from environment variable
 const SALT = process.env.SALT || "defaultSalt";

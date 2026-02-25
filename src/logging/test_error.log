@@ -1,0 +1,193 @@
+2026-01-11T22:22:44+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:22:46+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+[2m    - waiting for" https://orgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com/_ui/identity/verification/method/EmailVerificationFinishUi/e" navigation to finish...[22m
+[2m    - navigated to "https://orgfarm-1d42c03bde-dev-ed.develop.file.force.com/secur/contentDoor?startURL=https%3A%2F%2Forgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com%2Fone%2Fone.app&sid=00Dg5000002wIEj%21AQEAQEe9lvy…"[22m
+[2m    - waiting for" https://orgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com/one/one.app" navigation to finish...[22m
+[2m    - navigated to "https://orgfarm-1d42c03bde-dev-ed.develop.lightning.force.com/one/one.app"[22m
+
+2026-01-11T22:22:46+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:24:43+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+[2m    - waiting for navigation to finish...[22m
+[2m    - navigated to "https://orgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com/_ui/identity/verification/method/EmailVerificationFinishUi/e?vcsrf=tWoYJVF9A7Wrb7NF0ZZvNmayqiXMNJvngR_SMLh2cQ17kVcQrloRalMBW62BYnKn7RQS9PKa…"[22m
+
+2026-01-11T22:24:45+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+[2m    - waiting for" https://orgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com/_ui/identity/verification/method/EmailVerificationFinishUi/e" navigation to finish...[22m
+[2m    - navigated to "https://orgfarm-1d42c03bde-dev-ed.develop.file.force.com/secur/contentDoor?startURL=https%3A%2F%2Forgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com%2Fone%2Fone.app&sid=00Dg5000002wIEj%21AQEAQGbUkGe…"[22m
+
+2026-01-11T22:24:45+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:25:24+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:25:24+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:25:24+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:25:44+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:25:44+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:25:44+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:26:14+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-01-11T22:26:15+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+[2m    - waiting for" https://orgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com/_ui/identity/verification/method/EmailVerificationFinishUi/e" navigation to finish...[22m
+[2m    - navigated to "https://orgfarm-1d42c03bde-dev-ed.develop.file.force.com/secur/contentDoor?startURL=https%3A%2F%2Forgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com%2Fone%2Fone.app&sid=00Dg5000002wIEj%21AQEAQAqTgPL…"[22m
+[2m    - waiting for" https://orgfarm-1d42c03bde-dev-ed.develop.my.salesforce.com/one/one.app" navigation to finish...[22m
+[2m    - navigated to "https://orgfarm-1d42c03bde-dev-ed.develop.lightning.force.com/one/one.app"[22m
+
+2026-01-11T22:26:15+05:30 [error]: Error checking service title: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByTitle('Service')
+Expected: visible
+Timeout: 19000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 19000ms[22m
+[2m  - waiting for getByTitle('Service')[22m
+
+2026-02-25T22:32:09+05:30 [error]: Error verifying Event tab visibility: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByRole('link', { name: /Events?/i }).first()
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 5000ms[22m
+[2m  - waiting for getByRole('link', { name: /Events?/i }).first()[22m
+
+2026-02-25T22:33:56+05:30 [error]: Error verifying Event tab visibility: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: getByText('Events', { exact: true }).first()
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect "toBeVisible" with timeout 5000ms[22m
+[2m  - waiting for getByText('Events', { exact: true }).first()[22m
+

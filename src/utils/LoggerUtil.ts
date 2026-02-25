@@ -1,6 +1,10 @@
 import winston from "winston";
 import path from "path";
 import moment from "moment-timezone";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const currentDir = __dirname;
 // Go one level above (back to 'src')

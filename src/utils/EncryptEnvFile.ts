@@ -1,9 +1,15 @@
-let CryptoJSUTIl = require("crypto-js");
+import CryptoJS from "crypto-js";
 import { config } from 'dotenv';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
+const CryptoJSUtil = CryptoJS;
 const SALT = process.env.SALT || "defaultSalt";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const currentDir = __dirname;
 // Go one level up to reach the src directory
 const srcDir = path.resolve(currentDir, '..');
@@ -26,7 +32,7 @@ export function encryptEnvFile(){
     const encryptedLines = envLines.map(line => {
         const [key, value] = line.split('=');
         if(value){
-            const encryptedValue = CryptoJSUTIl.AES.encrypt(value, SALT).toString();
+            const encryptedValue = CryptoJSUtil.AES.encrypt(value, SALT).toString();
             return `${key}=${encryptedValue}`;
     }
         return line; // Return the line as is if it doesn't contain '='
@@ -49,8 +55,8 @@ export function decryptEnvFile(){
     const decryptedLines = envLines.map(line => {
         const [key, value] = line.split('=');
         if(value){
-            const bytes = CryptoJSUTIl.AES.decrypt(value, SALT);
-            const decryptedValue = bytes.toString(CryptoJSUTIl.enc.Utf8);
+            const bytes = CryptoJSUtil.AES.decrypt(value, SALT);
+            const decryptedValue = bytes.toString(CryptoJSUtil.enc.Utf8);
             return `${key}=${decryptedValue}`;
         }
         return line; // Return the line as is if it doesn't contain '='
