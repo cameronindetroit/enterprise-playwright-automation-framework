@@ -706,3 +706,61 @@ Call log:
 2026-02-26T00:27:59+05:30 [info]: ICP tab navigation test completed
 2026-02-26T00:27:59+05:30 [info]: FAQ tab navigation test completed
 2026-02-26T00:28:13+05:30 [info]: Event tab navigation test completed
+2026-02-26T01:16:26+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-26T01:16:26+05:30 [info]: FAQ tab navigation test started...
+2026-02-26T01:16:26+05:30 [info]: Event tab navigation test started...
+2026-02-26T01:16:26+05:30 [info]: ICP tab navigation test started...
+2026-02-26T01:16:26+05:30 [info]: Settings tab navigation test started...
+2026-02-26T01:16:26+05:30 [info]: Data Request tab navigation test started...
+2026-02-26T01:16:37+05:30 [info]: Navigating to Data Request tab
+2026-02-26T01:16:38+05:30 [info]: Clicked on Data Request tab
+2026-02-26T01:16:39+05:30 [info]: Data Request tab navigation test completed
+2026-02-26T01:16:39+05:30 [info]: Navigating to Settings tab
+2026-02-26T01:16:39+05:30 [info]: Navigating to FAQ tab
+2026-02-26T01:16:39+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T01:16:39+05:30 [info]: Clicked on Settings tab
+2026-02-26T01:16:39+05:30 [info]: Clicked on FAQ tab
+2026-02-26T01:16:40+05:30 [info]: Navigating to Event tab
+2026-02-26T01:16:40+05:30 [info]: Navigating to ICP tab
+2026-02-26T01:16:40+05:30 [info]: Test for login is completed
+2026-02-26T01:16:40+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T01:16:40+05:30 [info]: Clicked on Event tab
+2026-02-26T01:16:40+05:30 [info]: Clicked on ICP tab
+2026-02-26T01:16:40+05:30 [info]: Settings tab navigation test completed
+2026-02-26T01:16:40+05:30 [info]: Feature/Bug Request tab navigation test completed
+2026-02-26T01:16:41+05:30 [info]: ICP tab navigation test completed
+2026-02-26T01:16:43+05:30 [info]: FAQ tab navigation test completed
+2026-02-26T01:16:57+05:30 [info]: Event tab navigation test completed
+2026-02-26T01:19:10+05:30 [info]: Event tab navigation test started...
+2026-02-26T01:19:17+05:30 [info]: Navigating to Event tab
+2026-02-26T01:19:17+05:30 [info]: Clicked on Event tab
+2026-02-26T01:19:22+05:30 [info]: Event tab navigation test completed
+2026-02-26T01:23:22+05:30 [info]: Event tab navigation test started...
+2026-02-26T01:23:29+05:30 [info]: Navigating to Event tab
+2026-02-26T01:23:29+05:30 [info]: Clicked on Event tab
+2026-02-26T01:23:32+05:30 [info]: Event tab navigation test completed
+2026-02-26T01:23:57+05:30 [info]: Settings tab navigation test started...
+2026-02-26T01:23:57+05:30 [info]: Event tab navigation test started...
+2026-02-26T01:23:57+05:30 [info]: ICP tab navigation test started...
+2026-02-26T01:23:57+05:30 [info]: Feature/Bug Request tab navigation test started...
+2026-02-26T01:23:57+05:30 [info]: Data Request tab navigation test started...
+2026-02-26T01:23:57+05:30 [info]: FAQ tab navigation test started...
+2026-02-26T01:24:08+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T01:24:09+05:30 [info]: Navigating to ICP tab
+2026-02-26T01:24:09+05:30 [info]: Clicked on ICP tab
+2026-02-26T01:24:09+05:30 [info]: Navigating to FAQ tab
+2026-02-26T01:24:09+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T01:24:10+05:30 [info]: Feature/Bug Request tab navigation test completed
+2026-02-26T01:24:10+05:30 [info]: Navigating to Settings tab
+2026-02-26T01:24:10+05:30 [info]: Clicked on FAQ tab
+2026-02-26T01:24:10+05:30 [info]: Test for login is completed
+2026-02-26T01:24:10+05:30 [info]: Clicked on Settings tab
+2026-02-26T01:24:10+05:30 [info]: ICP tab navigation test completed
+2026-02-26T01:24:11+05:30 [info]: Navigating to Event tab
+2026-02-26T01:24:11+05:30 [info]: Navigating to Data Request tab
+2026-02-26T01:24:11+05:30 [info]: Settings tab navigation test completed
+2026-02-26T01:24:11+05:30 [info]: Clicked on Event tab
+2026-02-26T01:24:12+05:30 [info]: Clicked on Data Request tab
+2026-02-26T01:24:12+05:30 [info]: FAQ tab navigation test completed
+2026-02-26T01:24:12+05:30 [info]: Data Request tab navigation test completed
+2026-02-26T01:24:25+05:30 [info]: Event tab navigation test completed
