@@ -2,6 +2,8 @@
 
 Playwright + TypeScript test framework for Honeycomb ICP workflows using Page Object Model (POM), centralized PageManager usage, and fixture-based login setup.
 
+The dashboard E2E flow now includes KPI snapshot comparison and event-dropdown load validation.
+
 ## Quick Commands
 
 `npm test` — run all tests  
@@ -49,18 +51,33 @@ The fixture supports encrypted or plain values. If encrypted values are used, de
 
 Page classes live under `src/pages`.
 
+Recent structure updates:
+
+- `DashboardPage.ts` owns dashboard-only locators/actions (KPIs, event dropdown, load event)
+- `HomePage.ts` focuses on shell navigation and account/contact actions
+- `ContactAccountAdminModalPage.ts` encapsulates Contact modal interactions
+
 ### Page Manager
 
 `PageManager` centralizes page object creation and access:
 
 - LoginPage
 - HomePage
+- DashboardPage
 - EventPage
 - ICPPage
 - DataRequestPage
 - SettingsPage
 - FAQPage
 - FeatureBugRequestPage
+
+### Test Helpers
+
+Reusable E2E helper logic is extracted to:
+
+- `src/tests/helpers/DashboardE2EHelper.ts`
+
+This helper centralizes KPI readiness waits, snapshot attachments, random event selection, and KPI change assertions.
 
 ### Fixture-based Setup
 
@@ -115,6 +132,10 @@ Run specific suites:
 npm run dash
 npm run login
 
+Run dashboard E2E suite:
+
+npx playwright test src/tests/dashboardE2E.spec.ts
+
 Re-run only failed tests:
 
 npm run last
@@ -162,7 +183,20 @@ Screenshots and artifacts:
 ## Current Test Files
 
 - `src/tests/dashboardTest.spec.ts`
+- `src/tests/dashboardE2E.spec.ts`
 - `src/tests/loginTest.spec.ts`
+
+## Dashboard E2E Coverage
+
+`src/tests/dashboardE2E.spec.ts` currently validates:
+
+- Dashboard shell visibility post-login
+- Dashboard KPI/header elements
+- Event dropdown flow with random event selection
+- Load New Event behavior and before/after KPI snapshot comparison
+- Navigation coverage for Events, ICP, Data Request, Settings, FAQ, Feature/Bug Request
+
+Note: Contact modal send flow is intentionally `test.skip(...)` to avoid sending real emails during routine runs.
 
 ## Troubleshooting
 
