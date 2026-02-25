@@ -1,4 +1,4 @@
-# Enterprise Test Automation Framework for AUT (Salesforce)
+# Enterprise Test Automation Framework for AUT (HoneycompICP)
 
 ## 1. Overview
 
