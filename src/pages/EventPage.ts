@@ -3,7 +3,7 @@ import logger from "../utils/LoggerUtil";
 
 export default class EventPage {
 
-  private readonly eventsContainerHeaderLocator = "First Name";
+  private readonly eventsContainerHeaderLocator = "Company Enrich";
 
 
   constructor(private page: Page) {}

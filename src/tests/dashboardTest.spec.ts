@@ -1,22 +1,8 @@
-import { test, expect, Page } from "@playwright/test";
-import { decrypt } from "../utils/CryptojsUtil";
+import { test, expect } from "./fixtures.ts";
 import logger from "../utils/LoggerUtil";
-import PageManager from "../pages/PageManager";
-
-async function loginAndGetPageManager(page: Page) {
-  const pageManager = new PageManager(page);
-  const loginPage = pageManager.getLoginPage();
-  await loginPage.navigate();
-  await loginPage.fillUsername(decrypt(process.env.userid!));
-  await loginPage.fillPassword(decrypt(process.env.password!));
-  await loginPage.clickLoginButton();
-
-  return pageManager;
-}
  
-test("Event tab navigation", async ({ page }) => {
+test("Event tab navigation", async ({ pageManager }) => {
   logger.info("Event tab navigation test started...");
-  const pageManager = await loginAndGetPageManager(page);
   const homePage = pageManager.getHomePage();
   const eventPage = pageManager.getEventPage();
   await expect(homePage.getEventTab()).toBeVisible({ timeout: 19000 });
@@ -26,9 +12,8 @@ test("Event tab navigation", async ({ page }) => {
   logger.info("Event tab navigation test completed");
 });
 
-test("ICP tab navigation", async ({ page }) => {
+test("ICP tab navigation", async ({ pageManager }) => {
   logger.info("ICP tab navigation test started...");
-  const pageManager = await loginAndGetPageManager(page);
   const homePage = pageManager.getHomePage();
   const icpPage = pageManager.getICPPage();
   await expect(homePage.getICPTab()).toBeVisible({ timeout: 19000 });
@@ -38,9 +23,8 @@ test("ICP tab navigation", async ({ page }) => {
   logger.info("ICP tab navigation test completed");
 });
 
-test("Data Request tab navigation", async ({ page }) => {
+test("Data Request tab navigation", async ({ pageManager }) => {
   logger.info("Data Request tab navigation test started...");
-  const pageManager = await loginAndGetPageManager(page);
   const homePage = pageManager.getHomePage();
   const dataRequestPage = pageManager.getDataRequestPage();
   await expect(homePage.getDataRequestTab()).toBeVisible({ timeout: 19000 });
@@ -50,9 +34,8 @@ test("Data Request tab navigation", async ({ page }) => {
   logger.info("Data Request tab navigation test completed");
 });
 
-test("Settings tab navigation", async ({ page }) => {
+test("Settings tab navigation", async ({ pageManager }) => {
   logger.info("Settings tab navigation test started...");
-  const pageManager = await loginAndGetPageManager(page);
   const homePage = pageManager.getHomePage();
   const settingsPage = pageManager.getSettingsPage();
   await expect(homePage.getSettingsTab()).toBeVisible({ timeout: 19000 });
@@ -62,9 +45,8 @@ test("Settings tab navigation", async ({ page }) => {
   logger.info("Settings tab navigation test completed");
 });
 
-test("FAQ tab navigation", async ({ page }) => {
+test("FAQ tab navigation", async ({ pageManager }) => {
   logger.info("FAQ tab navigation test started...");
-  const pageManager = await loginAndGetPageManager(page);
   const homePage = pageManager.getHomePage();
   const faqPage = pageManager.getFAQPage();
   await expect(homePage.getFAQTab()).toBeVisible({ timeout: 19000 });
@@ -74,9 +56,8 @@ test("FAQ tab navigation", async ({ page }) => {
   logger.info("FAQ tab navigation test completed");
 });
 
-test("Feature/Bug Request tab navigation", async ({ page }) => {
+test("Feature/Bug Request tab navigation", async ({ pageManager }) => {
   logger.info("Feature/Bug Request tab navigation test started...");
-  const pageManager = await loginAndGetPageManager(page);
   const homePage = pageManager.getHomePage();
   const featureBugRequestPage = pageManager.getFeatureBugRequestPage();
   await expect(featureBugRequestPage.getFeatureBugRequestContainer()).toBeVisible({ timeout: 19000 });
