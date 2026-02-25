@@ -1077,3 +1077,181 @@ Call log:
 2026-02-26T02:31:55+05:30 [info]: Feature/Bug Request tab navigation test completed
 2026-02-26T02:31:55+05:30 [info]: Data Request tab navigation test completed
 2026-02-26T02:31:55+05:30 [info]: ICP tab navigation test completed
+2026-02-26T03:21:17+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T03:21:17+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T03:21:17+05:30 [info]: Navigating to ICP tab
+2026-02-26T03:21:17+05:30 [info]: Clicked on ICP tab
+2026-02-26T03:21:18+05:30 [info]: Navigating to Data Request tab
+2026-02-26T03:21:18+05:30 [info]: Navigating to FAQ tab
+2026-02-26T03:21:18+05:30 [info]: Clicked on Data Request tab
+2026-02-26T03:21:18+05:30 [info]: Clicked on FAQ tab
+2026-02-26T03:21:18+05:30 [info]: Navigating to Settings tab
+2026-02-26T03:21:18+05:30 [info]: Clicked on Settings tab
+2026-02-26T03:21:19+05:30 [info]: Navigating to Event tab
+2026-02-26T03:21:19+05:30 [info]: Clicked on Event tab
+2026-02-26T03:23:56+05:30 [info]: Navigating to FAQ tab
+2026-02-26T03:23:56+05:30 [info]: Navigating to Event tab
+2026-02-26T03:23:56+05:30 [info]: Navigating to Data Request tab
+2026-02-26T03:23:56+05:30 [info]: Clicked on Data Request tab
+2026-02-26T03:23:56+05:30 [info]: Clicked on FAQ tab
+2026-02-26T03:23:56+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T03:23:56+05:30 [info]: Navigating to ICP tab
+2026-02-26T03:23:56+05:30 [info]: Clicked on ICP tab
+2026-02-26T03:23:56+05:30 [info]: Clicked on Event tab
+2026-02-26T03:23:57+05:30 [info]: Navigating to Settings tab
+2026-02-26T03:23:57+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T03:23:57+05:30 [info]: Clicked on Settings tab
+2026-02-26T03:29:40+05:30 [info]: Navigating to Data Request tab
+2026-02-26T03:29:40+05:30 [info]: Clicked on Data Request tab
+2026-02-26T03:29:41+05:30 [info]: Navigating to FAQ tab
+2026-02-26T03:29:41+05:30 [info]: Navigating to Settings tab
+2026-02-26T03:29:41+05:30 [info]: Clicked on Settings tab
+2026-02-26T03:29:42+05:30 [info]: Clicked on FAQ tab
+2026-02-26T03:29:42+05:30 [info]: Navigating to ICP tab
+2026-02-26T03:29:42+05:30 [info]: Navigating to Event tab
+2026-02-26T03:29:42+05:30 [info]: Clicked on ICP tab
+2026-02-26T03:29:42+05:30 [info]: Clicked on Event tab
+2026-02-26T03:29:47+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T03:29:47+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T03:37:00+05:30 [info]: Navigating to FAQ tab
+2026-02-26T03:37:00+05:30 [info]: Clicked on FAQ tab
+2026-02-26T03:37:01+05:30 [info]: Navigating to Settings tab
+2026-02-26T03:37:01+05:30 [info]: Clicked on Settings tab
+2026-02-26T03:37:01+05:30 [info]: Navigating to Data Request tab
+2026-02-26T03:37:01+05:30 [info]: Clicked on Data Request tab
+2026-02-26T03:37:02+05:30 [info]: Navigating to ICP tab
+2026-02-26T03:37:02+05:30 [info]: Clicked on ICP tab
+2026-02-26T03:37:02+05:30 [info]: Navigating to Event tab
+2026-02-26T03:37:02+05:30 [info]: Clicked on Event tab
+2026-02-26T03:37:08+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T03:37:08+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T03:37:56+05:30 [info]: Navigating to Settings tab
+2026-02-26T03:37:56+05:30 [info]: Clicked on Settings tab
+2026-02-26T03:37:57+05:30 [info]: Navigating to FAQ tab
+2026-02-26T03:37:57+05:30 [info]: Clicked on FAQ tab
+2026-02-26T03:37:57+05:30 [info]: Navigating to ICP tab
+2026-02-26T03:37:58+05:30 [info]: Navigating to Event tab
+2026-02-26T03:37:58+05:30 [info]: Navigating to Data Request tab
+2026-02-26T03:37:58+05:30 [info]: Clicked on Event tab
+2026-02-26T03:37:58+05:30 [info]: Clicked on ICP tab
+2026-02-26T03:37:58+05:30 [info]: Clicked on Data Request tab
+2026-02-26T03:38:04+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T03:38:04+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T03:40:38+05:30 [info]: Navigating to Event tab
+2026-02-26T03:40:38+05:30 [info]: Clicked on Event tab
+2026-02-26T03:40:39+05:30 [info]: Navigating to FAQ tab
+2026-02-26T03:40:39+05:30 [info]: Navigating to Data Request tab
+2026-02-26T03:40:40+05:30 [info]: Clicked on Data Request tab
+2026-02-26T03:40:40+05:30 [info]: Navigating to ICP tab
+2026-02-26T03:40:40+05:30 [info]: Clicked on ICP tab
+2026-02-26T03:40:40+05:30 [info]: Navigating to Settings tab
+2026-02-26T03:40:40+05:30 [info]: Clicked on FAQ tab
+2026-02-26T03:40:40+05:30 [info]: Clicked on Settings tab
+2026-02-26T03:40:45+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T03:40:45+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T03:41:42+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T03:41:42+05:30 [info]: Navigating to Event tab
+2026-02-26T03:41:42+05:30 [info]: Navigating to Settings tab
+2026-02-26T03:41:42+05:30 [info]: Navigating to FAQ tab
+2026-02-26T03:41:42+05:30 [info]: Navigating to Data Request tab
+2026-02-26T03:41:42+05:30 [info]: Navigating to ICP tab
+2026-02-26T03:41:42+05:30 [info]: Clicked on Event tab
+2026-02-26T03:41:42+05:30 [info]: Clicked on Settings tab
+2026-02-26T03:41:42+05:30 [info]: Clicked on ICP tab
+2026-02-26T03:41:42+05:30 [info]: Clicked on FAQ tab
+2026-02-26T03:41:42+05:30 [info]: Clicked on Data Request tab
+2026-02-26T03:41:42+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T03:43:04+05:30 [info]: Navigating to ICP tab
+2026-02-26T03:43:04+05:30 [info]: Clicked on ICP tab
+2026-02-26T03:43:06+05:30 [info]: Navigating to Event tab
+2026-02-26T03:43:06+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T03:43:06+05:30 [info]: Navigating to Data Request tab
+2026-02-26T03:43:06+05:30 [info]: Navigating to Settings tab
+2026-02-26T03:43:06+05:30 [info]: Clicked on Event tab
+2026-02-26T03:43:06+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T03:43:06+05:30 [info]: Clicked on Data Request tab
+2026-02-26T03:43:06+05:30 [info]: Clicked on Settings tab
+2026-02-26T03:43:06+05:30 [info]: Navigating to FAQ tab
+2026-02-26T03:43:07+05:30 [info]: Clicked on FAQ tab
+2026-02-26T03:53:52+05:30 [info]: Navigating to Settings tab
+2026-02-26T03:53:52+05:30 [info]: Clicked on Settings tab
+2026-02-26T03:53:53+05:30 [info]: Navigating to Event tab
+2026-02-26T03:53:53+05:30 [info]: Clicked on Event tab
+2026-02-26T03:53:53+05:30 [info]: Navigating to Data Request tab
+2026-02-26T03:53:53+05:30 [info]: Clicked on Data Request tab
+2026-02-26T03:53:54+05:30 [info]: Navigating to FAQ tab
+2026-02-26T03:53:54+05:30 [info]: Clicked on FAQ tab
+2026-02-26T03:53:54+05:30 [info]: Navigating to ICP tab
+2026-02-26T03:53:54+05:30 [info]: Clicked on ICP tab
+2026-02-26T03:53:59+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T03:53:59+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T04:00:41+05:30 [info]: Navigating to Data Request tab
+2026-02-26T04:00:41+05:30 [info]: Clicked on Data Request tab
+2026-02-26T04:00:42+05:30 [info]: Navigating to FAQ tab
+2026-02-26T04:00:42+05:30 [info]: Clicked on FAQ tab
+2026-02-26T04:00:43+05:30 [info]: Navigating to Event tab
+2026-02-26T04:00:43+05:30 [info]: Clicked on Event tab
+2026-02-26T04:00:43+05:30 [info]: Navigating to ICP tab
+2026-02-26T04:00:43+05:30 [info]: Navigating to Settings tab
+2026-02-26T04:00:43+05:30 [info]: Clicked on ICP tab
+2026-02-26T04:00:43+05:30 [info]: Clicked on Settings tab
+2026-02-26T04:01:43+05:30 [info]: Navigating to Data Request tab
+2026-02-26T04:01:43+05:30 [info]: Clicked on Data Request tab
+2026-02-26T04:01:43+05:30 [info]: Navigating to Event tab
+2026-02-26T04:01:43+05:30 [info]: Clicked on Event tab
+2026-02-26T04:01:44+05:30 [info]: Navigating to Settings tab
+2026-02-26T04:01:44+05:30 [info]: Clicked on Settings tab
+2026-02-26T04:01:45+05:30 [info]: Navigating to ICP tab
+2026-02-26T04:01:45+05:30 [info]: Clicked on ICP tab
+2026-02-26T04:01:46+05:30 [info]: Navigating to FAQ tab
+2026-02-26T04:01:46+05:30 [info]: Clicked on FAQ tab
+2026-02-26T04:01:50+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T04:01:50+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T04:14:25+05:30 [info]: Navigating to FAQ tab
+2026-02-26T04:14:25+05:30 [info]: Clicked on FAQ tab
+2026-02-26T04:14:26+05:30 [info]: Navigating to Event tab
+2026-02-26T04:14:26+05:30 [info]: Navigating to Data Request tab
+2026-02-26T04:14:26+05:30 [info]: Clicked on Data Request tab
+2026-02-26T04:14:26+05:30 [info]: Clicked on Event tab
+2026-02-26T04:14:26+05:30 [info]: Navigating to Settings tab
+2026-02-26T04:14:27+05:30 [info]: Clicked on Settings tab
+2026-02-26T04:14:27+05:30 [info]: Navigating to ICP tab
+2026-02-26T04:14:27+05:30 [info]: Clicked on ICP tab
+2026-02-26T04:14:32+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T04:14:32+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T04:17:37+05:30 [info]: Navigating to ICP tab
+2026-02-26T04:17:37+05:30 [info]: Clicked on ICP tab
+2026-02-26T04:17:37+05:30 [info]: Navigating to Data Request tab
+2026-02-26T04:17:38+05:30 [info]: Navigating to Event tab
+2026-02-26T04:17:38+05:30 [info]: Clicked on Event tab
+2026-02-26T04:17:38+05:30 [info]: Clicked on Data Request tab
+2026-02-26T04:17:38+05:30 [info]: Navigating to Settings tab
+2026-02-26T04:17:39+05:30 [info]: Navigating to FAQ tab
+2026-02-26T04:17:39+05:30 [info]: Clicked on Settings tab
+2026-02-26T04:17:39+05:30 [info]: Clicked on FAQ tab
+2026-02-26T04:17:46+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T04:17:46+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T04:21:17+05:30 [info]: Navigating to Event tab
+2026-02-26T04:21:17+05:30 [info]: Clicked on Event tab
+2026-02-26T04:21:18+05:30 [info]: Navigating to Settings tab
+2026-02-26T04:21:18+05:30 [info]: Clicked on Settings tab
+2026-02-26T04:21:19+05:30 [info]: Navigating to ICP tab
+2026-02-26T04:21:19+05:30 [info]: Clicked on ICP tab
+2026-02-26T04:21:19+05:30 [info]: Navigating to FAQ tab
+2026-02-26T04:21:19+05:30 [info]: Navigating to Data Request tab
+2026-02-26T04:21:19+05:30 [info]: Clicked on FAQ tab
+2026-02-26T04:21:20+05:30 [info]: Clicked on Data Request tab
+2026-02-26T04:21:25+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T04:21:25+05:30 [info]: Clicked on Feature/Bug Request tab
+2026-02-26T04:24:05+05:30 [info]: Navigating to Settings tab
+2026-02-26T04:24:05+05:30 [info]: Clicked on Settings tab
+2026-02-26T04:24:06+05:30 [info]: Navigating to ICP tab
+2026-02-26T04:24:06+05:30 [info]: Clicked on ICP tab
+2026-02-26T04:24:07+05:30 [info]: Navigating to Event tab
+2026-02-26T04:24:07+05:30 [info]: Navigating to FAQ tab
+2026-02-26T04:24:07+05:30 [info]: Clicked on Event tab
+2026-02-26T04:24:07+05:30 [info]: Clicked on FAQ tab
+2026-02-26T04:24:07+05:30 [info]: Navigating to Data Request tab
+2026-02-26T04:24:08+05:30 [info]: Clicked on Data Request tab
+2026-02-26T04:24:12+05:30 [info]: Navigating to Feature/Bug Request tab
+2026-02-26T04:24:12+05:30 [info]: Clicked on Feature/Bug Request tab

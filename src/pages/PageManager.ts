@@ -7,6 +7,7 @@ import DataRequestPage from "./DataRequestPage";
 import SettingsPage from "./SettingsPage";
 import FAQPage from "./FAQPage";
 import FeatureBugRequestPage from "./FeatureBugRequestPage";
+import DashboardPage from "./DashboardPage";
 
 export default class PageManager {
   private loginPage?: LoginPage;
@@ -17,6 +18,7 @@ export default class PageManager {
   private settingsPage?: SettingsPage;
   private faqPage?: FAQPage;
   private featureBugRequestPage?: FeatureBugRequestPage;
+  private dashboardPage?: DashboardPage;
 
   constructor(private page: Page) {}
 
@@ -74,5 +76,12 @@ export default class PageManager {
       this.featureBugRequestPage = new FeatureBugRequestPage(this.page);
     }
     return this.featureBugRequestPage;
+  }
+
+  getDashboardPage() {
+    if (!this.dashboardPage) {
+      this.dashboardPage = new DashboardPage(this.page);
+    }
+    return this.dashboardPage;
   }
 }
