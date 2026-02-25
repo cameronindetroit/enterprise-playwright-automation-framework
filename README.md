@@ -2,6 +2,16 @@
 
 Playwright + TypeScript test framework for Honeycomb ICP workflows using Page Object Model (POM), centralized PageManager usage, and fixture-based login setup.
 
+## Quick Commands
+
+`npm test` — run all tests  
+`npm run ui` — open Playwright UI mode  
+`npm run list` — list discovered tests  
+`npm run chr` / `npm run ff` / `npm run wk` — run one browser project  
+`npm run dash` / `npm run login` — run key suites  
+`npm run last` — rerun failed tests  
+`npm run report` — open HTML report
+
 ## Prerequisites
 
 - Node.js 20.17+
@@ -71,6 +81,49 @@ test("...", async ({ pageManager }) => {
 });
 
 ## Running Tests
+
+### NPM Shortcuts (Recommended)
+
+Run all tests:
+
+npm test
+
+Open Playwright UI mode:
+
+npm run ui
+
+List discovered tests:
+
+npm run list
+
+Run in headed mode:
+
+npm run headed
+
+Run in debug mode:
+
+npm run debug
+
+Run by browser:
+
+npm run chr
+npm run ff
+npm run wk
+
+Run specific suites:
+
+npm run dash
+npm run login
+
+Re-run only failed tests:
+
+npm run last
+
+Open HTML report:
+
+npm run report
+
+### Direct Playwright Commands
 
 Run all tests:
 
