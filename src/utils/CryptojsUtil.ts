@@ -15,9 +15,17 @@ export function encrypt(text: string){
 
 // Decryption function
 export function decrypt(cipherText: string){
-    const bytes = CryptoJSUtil.AES.decrypt(cipherText, SALT);
-    const originalText = bytes.toString(CryptoJSUtil.enc.Utf8);
-    return originalText;
+    if (!cipherText) {
+        return "";
+    }
+
+    try {
+        const bytes = CryptoJSUtil.AES.decrypt(cipherText, SALT);
+        const originalText = bytes.toString(CryptoJSUtil.enc.Utf8);
+        return originalText || "";
+    } catch {
+        return "";
+    }
 }
 
 // Example usage:

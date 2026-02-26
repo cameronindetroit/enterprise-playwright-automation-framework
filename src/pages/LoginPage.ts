@@ -46,4 +46,18 @@ async clickLoginButton() {
     return homePage;
 }
 
+async isLoginFormVisible(timeout = 2000) {
+    const emailInputVisible = await this.page
+        .locator(this.usernameInputSelector)
+        .isVisible({ timeout })
+        .catch(() => false);
+
+    const passwordInputVisible = await this.page
+        .locator(this.passwordInputSelector)
+        .isVisible({ timeout })
+        .catch(() => false);
+
+    return emailInputVisible && passwordInputVisible;
+}
+
 }

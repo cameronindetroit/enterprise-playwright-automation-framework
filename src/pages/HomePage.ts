@@ -75,7 +75,7 @@ export default class HomePage {
     }
 
     getEventTab() {
-        return this.page.getByText(this.eventTabLocator, { exact: true }).first();
+        return this.page.locator('a:has-text("Events"), button:has-text("Events"), [role="tab"]:has-text("Events"), text=/^Events$/i').first();
     }
 
     getICPTab() {

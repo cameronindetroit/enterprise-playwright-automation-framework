@@ -32,6 +32,16 @@ async function ensureAuthenticatedDashboard(pageManager: PageManager) {
     await loginWithCredentials(pageManager);
   }
 
+  const dashboardVisible = await eventTab.isVisible({ timeout: UI_TIMEOUT }).catch(() => false);
+  if (!dashboardVisible) {
+    const stillOnLogin = await loginPage.isLoginFormVisible(2000);
+    if (stillOnLogin) {
+      throw new Error(
+        "Authentication did not reach dashboard. Verify HONEYCOMB_USERID/HONEYCOMB_PASSWORD secrets and app login availability.",
+      );
+    }
+  }
+
   await expect(eventTab).toBeVisible({ timeout: UI_TIMEOUT });
 }
 
