@@ -1,4 +1,4 @@
-import { test, expect } from "../../fixtures";
+import { test, expect } from "./dashboardE2E.fixtures";
 import PageManager from "../../../pages/PageManager";
 import DashboardE2EHelper from "../../helpers/DashboardE2EHelper";
 
