@@ -271,7 +271,8 @@ Recommended first-run defaults:
 
 Auto behavior for speed/stability:
 
-- non-critical suites → retries `0`, workers `2`
+- smoke suites (`smoke`, `smoke-dashboard`, `smoke-login`) → retries `0`, workers `1`
+- other non-critical suites → retries `0`, workers `2`
 - `e2e-critical` suite → retries `2`, workers `1`
 
 ### Get the HTML report

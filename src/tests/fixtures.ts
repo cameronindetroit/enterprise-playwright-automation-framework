@@ -30,7 +30,25 @@ async function ensureAuthenticatedDashboard(pageManager: PageManager) {
 
   const alreadyAuthenticated = await dashboardReadyIndicator.isVisible({ timeout: 5000 }).catch(() => false);
   if (!alreadyAuthenticated) {
-    await loginWithCredentials(pageManager);
+    const maxLoginAttempts = 2;
+    for (let attempt = 1; attempt <= maxLoginAttempts; attempt++) {
+      await loginWithCredentials(pageManager);
+
+      const dashboardVisibleAfterLogin = await dashboardReadyIndicator
+        .isVisible({ timeout: 12000 })
+        .catch(() => false);
+
+      if (dashboardVisibleAfterLogin) {
+        break;
+      }
+
+      const stillOnLogin = await loginPage.isLoginFormVisible(2000);
+      if (!stillOnLogin || attempt === maxLoginAttempts) {
+        break;
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+    }
   }
 
   const dashboardVisible = await dashboardReadyIndicator.isVisible({ timeout: UI_TIMEOUT }).catch(() => false);

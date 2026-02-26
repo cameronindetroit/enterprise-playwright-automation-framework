@@ -218,7 +218,7 @@ jobs:
           fi
 
           if [ "$WORKERS_INPUT" = "auto" ]; then
-            if [ "$SUITE" = "e2e-critical" ]; then
+            if [ "$SUITE" = "smoke" ] || [ "$SUITE" = "smoke-dashboard" ] || [ "$SUITE" = "smoke-login" ] || [ "$SUITE" = "e2e-critical" ]; then
               WORKERS_VALUE="1"
             else
               WORKERS_VALUE="2"
