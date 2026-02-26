@@ -282,6 +282,23 @@ When the run finishes (pass or fail), open the workflow run and download artifac
 
 Unzip it and open `index.html` in a browser.
 
+### Scheduled runs (GitHub Actions cron)
+
+This workflow is also scheduled to run automatically every hour.
+
+Cron configured in `.github/workflows/playwright-manual.yml`:
+
+- `0 * * * *`
+
+Scheduled run defaults:
+
+- `suite=smoke`
+- `browser=chromium`
+- `publish_to_pages=false`
+- `timing_summary=true`
+
+Note: Scheduled runs do not use manual `workflow_dispatch` input values.
+
 ### Optional: Live report URL via GitHub Pages
 
 If `publish_to_pages=true`, the workflow deploys `playwright-report/` to GitHub Pages and prints a live URL in run logs.

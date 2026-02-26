@@ -75,6 +75,8 @@ on:
         options:
           - "true"
           - "false"
+  schedule:
+    - cron: '0 * * * *'
 
 permissions:
   contents: read
@@ -94,6 +96,7 @@ jobs:
       NODE_ENV: ${{ inputs.node_env }}
       userid: ${{ secrets.HONEYCOMB_USERID }}
       password: ${{ secrets.HONEYCOMB_PASSWORD }}
+      EVENT_NAME: ${{ github.event_name }}
 
     steps:
       - name: Checkout
@@ -171,11 +174,25 @@ jobs:
           set -euo pipefail
           STEP_START=$(date +%s)
 
-          SUITE="${{ inputs.suite }}"
-          BROWSER="${{ inputs.browser }}"
-          GREP_FILTER="${{ inputs.grep }}"
-          RETRIES_INPUT="${{ inputs.retries }}"
-          WORKERS_INPUT="${{ inputs.workers }}"
+          if [ "$EVENT_NAME" = "schedule" ]; then
+            SUITE="smoke"
+            BROWSER="chromium"
+            GREP_FILTER=""
+            RETRIES_INPUT="auto"
+            WORKERS_INPUT="auto"
+            PUBLISH_TO_PAGES="false"
+            TIMING_SUMMARY="true"
+          else
+            SUITE="${{ inputs.suite }}"
+            BROWSER="${{ inputs.browser }}"
+            GREP_FILTER="${{ inputs.grep }}"
+            RETRIES_INPUT="${{ inputs.retries }}"
+            WORKERS_INPUT="${{ inputs.workers }}"
+            PUBLISH_TO_PAGES="${{ inputs.publish_to_pages }}"
+            TIMING_SUMMARY="${{ inputs.timing_summary }}"
+          fi
+
+          echo "Run mode: $EVENT_NAME | suite=$SUITE browser=$BROWSER retries=$RETRIES_INPUT workers=$WORKERS_INPUT publish_to_pages=$PUBLISH_TO_PAGES timing_summary=$TIMING_SUMMARY"
 
           if [ "$RETRIES_INPUT" = "auto" ]; then
             if [ "$SUITE" = "e2e-critical" ]; then
@@ -300,7 +317,7 @@ jobs:
           echo "Set Source to GitHub Actions, or run with publish_to_pages=false." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Publish timing summary
-        if: always() && inputs.timing_summary == 'true'
+        if: always() && (github.event_name == 'schedule' || inputs.timing_summary == 'true')
         shell: bash
         run: |
           set -euo pipefail
