@@ -1,4 +1,4 @@
-# Enterprise Playwright Automation
+# HoneycombICP Playwright Automation
 
 Playwright + TypeScript test framework for Honeycomb ICP workflows using Page Object Model (POM), centralized PageManager usage, and fixture-based login setup.
 
@@ -11,6 +11,9 @@ The dashboard E2E flow now includes KPI snapshot comparison and event-dropdown l
 `npm run list` — list discovered tests  
 `npm run chr` / `npm run ff` / `npm run wk` — run one browser project  
 `npm run dash` / `npm run login` — run key suites  
+`npm run reg:dashboard` / `npm run e2e:dashboard` — run targeted dashboard suites  
+`npm run smoke` / `npm run smoke:dashboard` — run dedicated smoke suite(s)  
+`npm run reg:smoke` / `npm run e2e:critical` — run CI-focused fast subsets  
 `npm run last` — rerun failed tests  
 `npm run report` — open HTML report
 
@@ -83,11 +86,10 @@ This helper centralizes KPI readiness waits, snapshot attachments, random event 
 
 `src/tests/fixtures.ts` provides a custom test fixture that:
 
-1. Creates `pageManager`
-2. Navigates to login
-3. Fills credentials
-4. Logs in
-5. Exposes authenticated `pageManager` to tests
+1. Creates worker-scoped authenticated `storageState`
+2. Reuses that auth state across tests in the worker
+3. Falls back to credential login if auth state is stale
+4. Exposes authenticated `pageManager` to tests
 
 Tests use:
 
@@ -131,10 +133,30 @@ Run specific suites:
 
 npm run dash
 npm run login
+npm run reg:dashboard
+npm run e2e:dashboard
+npm run smoke
+npm run smoke:dashboard
+npm run reg:smoke
+npm run e2e:critical
 
 Run dashboard E2E suite:
 
-npx playwright test src/tests/dashboardE2E.spec.ts
+npx playwright test src/tests/e2e/dashboardE2E.spec.ts
+
+Run dashboard regression suite:
+
+npx playwright test src/tests/regression/dashboard.*.regression.spec.ts
+
+Run dedicated smoke suites:
+
+npx playwright test src/tests/smoke
+npx playwright test src/tests/smoke/dashboardSmoke.spec.ts
+
+Run tag-based subsets:
+
+npx playwright test src/tests/regression --grep @smoke
+npx playwright test src/tests/e2e --grep @critical
 
 Re-run only failed tests:
 
@@ -182,13 +204,17 @@ Screenshots and artifacts:
 
 ## Current Test Files
 
-- `src/tests/dashboardTest.spec.ts`
-- `src/tests/dashboardE2E.spec.ts`
+- `src/tests/e2e/dashboardE2E.spec.ts`
+- `src/tests/smoke/dashboardSmoke.spec.ts`
+- `src/tests/regression/dashboard.kpi.regression.spec.ts`
+- `src/tests/regression/dashboard.dropdown.regression.spec.ts`
+- `src/tests/regression/dashboard.navigation.regression.spec.ts`
+- `src/tests/regression/dashboard.contact.regression.spec.ts`
 - `src/tests/loginTest.spec.ts`
 
 ## Dashboard E2E Coverage
 
-`src/tests/dashboardE2E.spec.ts` currently validates:
+`src/tests/e2e/dashboardE2E.spec.ts` currently validates:
 
 - Dashboard shell visibility post-login
 - Dashboard KPI/header elements

@@ -1,11 +1,11 @@
-import { test, expect } from "./fixtures";
-import PageManager from "../pages/PageManager";
-import DashboardE2EHelper from "./helpers/DashboardE2EHelper";
+import { test, expect } from "../fixtures";
+import PageManager from "../../pages/PageManager";
+import DashboardE2EHelper from "../helpers/DashboardE2EHelper";
 
 const UI_TIMEOUT = 20000;
 const KPI_UPDATE_TIMEOUT = 45000;
 
-test("Dashboard shell is available after login", async ({ pageManager }) => {
+test("Dashboard shell is available after login @e2e @critical", async ({ pageManager }) => {
   await expect(pageManager.getDashboardPage().getDashboardTitle()).toBeVisible({ timeout: UI_TIMEOUT });
   await expect(pageManager.getHomePage().getLogoutButton()).toBeVisible({ timeout: UI_TIMEOUT });
 });
@@ -24,7 +24,7 @@ const dashboardVisibilityChecks = [
 ] as const;
 
 test.describe("Dashboard KPIs", () => {
-  test("Dashboard page shows KPI and header elements", async ({ pageManager }) => {
+  test("Dashboard page shows KPI and header elements @e2e", async ({ pageManager }) => {
     await expect(pageManager.getDashboardPage().getDashboardTitle()).toBeVisible({ timeout: UI_TIMEOUT });
 
     for (const getLocator of dashboardVisibilityChecks) {
@@ -33,7 +33,7 @@ test.describe("Dashboard KPIs", () => {
   });
 });
 
-test("Event dropdown loads selected event and refreshes dashboard KPIs", async ({ pageManager, page }, testInfo) => {
+test("Event dropdown loads selected event and refreshes dashboard KPIs @e2e @critical", async ({ pageManager, page }, testInfo) => {
   const dashboardPage = pageManager.getDashboardPage();
 
   await expect(dashboardPage.getDashboardTitle()).toBeVisible({ timeout: UI_TIMEOUT });
@@ -63,7 +63,7 @@ test("Event dropdown loads selected event and refreshes dashboard KPIs", async (
   expect(kpiDataAfter).not.toEqual(kpiDataBefore);
 });
 
-test.skip("Contact modal sends message and returns to dashboard", async ({ pageManager }) => {
+test.skip("Contact modal sends message and returns to dashboard @e2e", async ({ pageManager }) => {
   const testEmailTitle = "E2E Contact Modal Title";
   const testBody = "This is a dashboard E2E contact modal validation message.";
 
@@ -120,7 +120,7 @@ const featureScenarios = [
 ] as const;
 
 for (const scenario of featureScenarios) {
-  test(`${scenario.name} page works end-to-end`, async ({ pageManager }) => {
+  test(`${scenario.name} page works end-to-end @e2e`, async ({ pageManager }) => {
     await expect(scenario.getTab(pageManager)).toBeVisible({ timeout: UI_TIMEOUT });
     await scenario.navigate(pageManager);
     await expect(scenario.getPageMarker(pageManager)).toBeVisible({ timeout: UI_TIMEOUT });
