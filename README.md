@@ -285,12 +285,13 @@ Unzip it and open `index.html` in a browser.
 
 ### Scheduled runs (GitHub Actions cron)
 
-This workflow is also scheduled to run automatically with two cron triggers.
+This workflow is also scheduled to run automatically with three cron triggers.
 
 Cron configured in `.github/workflows/playwright-manual.yml`:
 
 - `0 * * * *` (hourly smoke run)
 - `0 8 * * 1` (weekly regression run, Mondays at 02:00 CST / 08:00 UTC)
+- `0 8 * * 5` (weekly e2e-critical run, Fridays at 02:00 CST / 08:00 UTC)
 
 Scheduled run defaults:
 
@@ -306,6 +307,13 @@ Scheduled run defaults:
   - `browser=chromium`
   - `retries=1`
   - `workers=2`
+  - `publish_to_pages=false`
+  - `timing_summary=true`
+- Weekly schedule (`0 8 * * 5`):
+  - `suite=e2e-critical`
+  - `browser=chromium`
+  - `retries=2`
+  - `workers=1`
   - `publish_to_pages=false`
   - `timing_summary=true`
 

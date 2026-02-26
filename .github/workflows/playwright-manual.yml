@@ -1,4 +1,14 @@
 name: Playwright Manual Run
+run-name: >-
+  ${{
+    github.event_name == 'workflow_dispatch'
+      && format('Playwright {0} | {1}', inputs.suite, inputs.browser)
+      || (github.event.schedule == '0 8 * * 1'
+        && 'Playwright regression-all | scheduled weekly'
+        || (github.event.schedule == '0 8 * * 5'
+          && 'Playwright e2e-critical | scheduled weekly'
+          || 'Playwright smoke | scheduled hourly'))
+  }}
 
 on:
   workflow_dispatch:
@@ -79,6 +89,7 @@ on:
   schedule:
     - cron: '0 * * * *'
     - cron: '0 8 * * 1'
+    - cron: '0 8 * * 5'
 
 permissions:
   contents: read
@@ -184,6 +195,14 @@ jobs:
               GREP_FILTER=""
               RETRIES_INPUT="1"
               WORKERS_INPUT="2"
+              PUBLISH_TO_PAGES="false"
+              TIMING_SUMMARY="true"
+            elif [ "$EVENT_SCHEDULE" = "0 8 * * 5" ]; then
+              SUITE="e2e-critical"
+              BROWSER="chromium"
+              GREP_FILTER=""
+              RETRIES_INPUT="2"
+              WORKERS_INPUT="1"
               PUBLISH_TO_PAGES="false"
               TIMING_SUMMARY="true"
             else
