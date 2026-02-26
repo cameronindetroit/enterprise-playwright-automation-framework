@@ -46,6 +46,35 @@ on:
         options:
           - "false"
           - "true"
+      retries:
+        description: "Retries override (auto = 0 for non-critical, 2 for e2e-critical)"
+        required: true
+        default: auto
+        type: choice
+        options:
+          - auto
+          - "0"
+          - "1"
+          - "2"
+      workers:
+        description: "Workers override (auto = 2 for non-critical, 1 for e2e-critical)"
+        required: true
+        default: auto
+        type: choice
+        options:
+          - auto
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+      timing_summary:
+        description: "Show per-step timing summary in run output"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
 
 permissions:
   contents: read
@@ -76,20 +105,77 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Initialize timing capture
+        run: |
+          echo "TIMINGS_FILE=$RUNNER_TEMP/playwright-timings.log" >> "$GITHUB_ENV"
+          echo "JOB_START_TS=$(date +%s)" >> "$GITHUB_ENV"
+          : > "$RUNNER_TEMP/playwright-timings.log"
 
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+      - name: Install dependencies
+        run: |
+          STEP_START=$(date +%s)
+          npm ci
+          STEP_END=$(date +%s)
+          echo "Install dependencies|$((STEP_END - STEP_START))|" >> "$TIMINGS_FILE"
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Playwright system dependencies
+        run: |
+          STEP_START=$(date +%s)
+          npx playwright install-deps
+          STEP_END=$(date +%s)
+          echo "Install Playwright system dependencies|$((STEP_END - STEP_START))|" >> "$TIMINGS_FILE"
+
+      - name: Install Playwright browsers (cache miss)
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: |
+          STEP_START=$(date +%s)
+          npx playwright install
+          STEP_END=$(date +%s)
+          echo "Install Playwright browsers|$((STEP_END - STEP_START))|cache miss" >> "$TIMINGS_FILE"
+
+      - name: Mark browser install from cache
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: |
+          echo "Install Playwright browsers|0|cache hit" >> "$TIMINGS_FILE"
 
       - name: Run selected Playwright suite
         shell: bash
         run: |
           set -euo pipefail
+          STEP_START=$(date +%s)
 
           SUITE="${{ inputs.suite }}"
           BROWSER="${{ inputs.browser }}"
           GREP_FILTER="${{ inputs.grep }}"
+          RETRIES_INPUT="${{ inputs.retries }}"
+          WORKERS_INPUT="${{ inputs.workers }}"
+
+          if [ "$RETRIES_INPUT" = "auto" ]; then
+            if [ "$SUITE" = "e2e-critical" ]; then
+              RETRIES_VALUE="2"
+            else
+              RETRIES_VALUE="0"
+            fi
+          else
+            RETRIES_VALUE="$RETRIES_INPUT"
+          fi
+
+          if [ "$WORKERS_INPUT" = "auto" ]; then
+            if [ "$SUITE" = "e2e-critical" ]; then
+              WORKERS_VALUE="1"
+            else
+              WORKERS_VALUE="2"
+            fi
+          else
+            WORKERS_VALUE="$WORKERS_INPUT"
+          fi
 
           CMD=(npx playwright test)
 
@@ -134,8 +220,19 @@ jobs:
             CMD+=(--grep "$GREP_FILTER")
           fi
 
+          CMD+=(--retries "$RETRIES_VALUE" --workers "$WORKERS_VALUE")
+
           echo "Running: ${CMD[*]}"
+
+          set +e
           "${CMD[@]}"
+          TEST_EXIT=$?
+          set -e
+
+          STEP_END=$(date +%s)
+          echo "Run Playwright tests|$((STEP_END - STEP_START))|suite=$SUITE browser=$BROWSER retries=$RETRIES_VALUE workers=$WORKERS_VALUE" >> "$TIMINGS_FILE"
+
+          exit "$TEST_EXIT"
 
       - name: Upload Playwright HTML report
         if: always()
@@ -173,3 +270,23 @@ jobs:
         if: always() && inputs.publish_to_pages == 'true'
         run: |
           echo "Live report URL: ${{ steps.deployment.outputs.page_url }}"
+
+      - name: Publish timing summary
+        if: always() && inputs.timing_summary == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          JOB_END_TS=$(date +%s)
+          TOTAL_SECONDS=$((JOB_END_TS - JOB_START_TS))
+
+          {
+            echo "## Run timing summary"
+            echo
+            echo "| Step | Seconds | Notes |"
+            echo "| --- | ---: | --- |"
+            while IFS='|' read -r STEP_NAME STEP_SECONDS STEP_NOTES; do
+              [ -z "$STEP_NAME" ] && continue
+              echo "| $STEP_NAME | $STEP_SECONDS | ${STEP_NOTES:-} |"
+            done < "$TIMINGS_FILE"
+            echo "| Total job elapsed | $TOTAL_SECONDS | includes artifact/upload/deploy overhead |"
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -254,6 +254,9 @@ These map to the runtime env vars expected by this framework (`userid` and `pass
   - optional `grep` tag filter (example `@critical`)
   - `node_env` (default `qa`)
   - `publish_to_pages` (`true` to publish live URL)
+  - `retries` (`auto` recommended)
+  - `workers` (`auto` recommended)
+  - `timing_summary` (`true` recommended)
 4. Start the run
 
 Recommended first-run defaults:
@@ -262,6 +265,14 @@ Recommended first-run defaults:
 - `browser=chromium`
 - `publish_to_pages=false`
 - leave `grep` empty
+- `retries=auto`
+- `workers=auto`
+- `timing_summary=true`
+
+Auto behavior for speed/stability:
+
+- non-critical suites → retries `0`, workers `2`
+- `e2e-critical` suite → retries `2`, workers `1`
 
 ### Get the HTML report
 
@@ -284,6 +295,11 @@ After each run with `publish_to_pages=true`:
 
 - Open the workflow run and check the deploy step output for `page_url`
 - The latest published report is available at that URL
+
+Timing details:
+
+- When `timing_summary=true`, the workflow publishes a **Run timing summary** table in the Actions run summary.
+- It includes major step durations (dependency install, Playwright setup, test execution) plus total job elapsed time.
 
 Note: GitHub Pages hosts one current version for this workflow deployment target (latest run replaces prior published report).
 
@@ -315,6 +331,8 @@ Note: GitHub Pages hosts one current version for this workflow deployment target
   - Symptom: Workflow exceeds expected runtime.
   - Fix: Select smaller suites first (`smoke`, `smoke-dashboard`, `smoke-login`).
   - Fix: Use one browser (`chromium`) before scaling to `all`.
+  - Fix: Keep `retries=auto` and `workers=auto`, or explicitly set `retries=0` and `workers=2` for faster feedback runs.
+  - Fix: Set `timing_summary=true` and check the summary table to identify the slowest step.
 
 #### Failure signatures quick map
 
