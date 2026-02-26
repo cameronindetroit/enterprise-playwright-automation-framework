@@ -338,6 +338,7 @@ Note: GitHub Pages hosts one current version for this workflow deployment target
 
 | Log/Error Signature | Likely Cause | Action |
 | --- | --- | --- |
+| `Configuration error` / `Missing required secrets HONEYCOMB_USERID and/or HONEYCOMB_PASSWORD` | Required Actions secrets are missing or empty | Add/update both secrets in **Settings → Secrets and variables → Actions**, then re-run |
 | `Error: userid is undefined` or login credential empty | Missing/incorrect Actions secrets | Add `HONEYCOMB_USERID` and `HONEYCOMB_PASSWORD` in repo Actions secrets, then re-run |
 | `Error: password is undefined` | Missing/incorrect Actions secrets | Recreate secret with exact name and verify non-empty value |
 | `No tests found` | Suite path/grep mismatch | Use `suite=all` first, clear `grep`, then narrow scope |

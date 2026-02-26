@@ -111,6 +111,26 @@ jobs:
           echo "JOB_START_TS=$(date +%s)" >> "$GITHUB_ENV"
           : > "$RUNNER_TEMP/playwright-timings.log"
 
+      - name: Validate required secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -z "${userid:-}" ] || [ -z "${password:-}" ]; then
+            {
+              echo "## Configuration error"
+              echo
+              echo "Required GitHub Actions secrets are missing or empty."
+              echo "- Expected: HONEYCOMB_USERID"
+              echo "- Expected: HONEYCOMB_PASSWORD"
+              echo
+              echo "Set them in: Settings → Secrets and variables → Actions"
+            } >> "$GITHUB_STEP_SUMMARY"
+
+            echo "::error::Missing required secrets HONEYCOMB_USERID and/or HONEYCOMB_PASSWORD"
+            exit 1
+          fi
+
       - name: Install dependencies
         run: |
           STEP_START=$(date +%s)
