@@ -13,6 +13,7 @@ on:
           - smoke
           - smoke-dashboard
           - smoke-login
+          - regression-all
           - regression-dashboard
           - regression-login
           - e2e-dashboard
@@ -77,6 +78,7 @@ on:
           - "false"
   schedule:
     - cron: '0 * * * *'
+    - cron: '0 8 * * 1'
 
 permissions:
   contents: read
@@ -97,6 +99,7 @@ jobs:
       userid: ${{ secrets.HONEYCOMB_USERID }}
       password: ${{ secrets.HONEYCOMB_PASSWORD }}
       EVENT_NAME: ${{ github.event_name }}
+      EVENT_SCHEDULE: ${{ github.event.schedule }}
 
     steps:
       - name: Checkout
@@ -175,13 +178,23 @@ jobs:
           STEP_START=$(date +%s)
 
           if [ "$EVENT_NAME" = "schedule" ]; then
-            SUITE="smoke"
-            BROWSER="chromium"
-            GREP_FILTER=""
-            RETRIES_INPUT="auto"
-            WORKERS_INPUT="auto"
-            PUBLISH_TO_PAGES="false"
-            TIMING_SUMMARY="true"
+            if [ "$EVENT_SCHEDULE" = "0 8 * * 1" ]; then
+              SUITE="regression-all"
+              BROWSER="chromium"
+              GREP_FILTER=""
+              RETRIES_INPUT="1"
+              WORKERS_INPUT="2"
+              PUBLISH_TO_PAGES="false"
+              TIMING_SUMMARY="true"
+            else
+              SUITE="smoke"
+              BROWSER="chromium"
+              GREP_FILTER=""
+              RETRIES_INPUT="auto"
+              WORKERS_INPUT="auto"
+              PUBLISH_TO_PAGES="false"
+              TIMING_SUMMARY="true"
+            fi
           else
             SUITE="${{ inputs.suite }}"
             BROWSER="${{ inputs.browser }}"
@@ -227,6 +240,9 @@ jobs:
               ;;
             smoke-login)
               CMD+=(src/tests/smoke/login/loginSmoke.spec.ts)
+              ;;
+            regression-all)
+              CMD+=(src/tests/regression)
               ;;
             regression-dashboard)
               CMD+=(src/tests/regression/dashboard/dashboard.*.regression.spec.ts)

@@ -284,18 +284,29 @@ Unzip it and open `index.html` in a browser.
 
 ### Scheduled runs (GitHub Actions cron)
 
-This workflow is also scheduled to run automatically every hour.
+This workflow is also scheduled to run automatically with two cron triggers.
 
 Cron configured in `.github/workflows/playwright-manual.yml`:
 
-- `0 * * * *`
+- `0 * * * *` (hourly smoke run)
+- `0 8 * * 1` (weekly regression run, Mondays at 02:00 CST / 08:00 UTC)
 
 Scheduled run defaults:
 
-- `suite=smoke`
-- `browser=chromium`
-- `publish_to_pages=false`
-- `timing_summary=true`
+- Hourly schedule (`0 * * * *`):
+  - `suite=smoke`
+  - `browser=chromium`
+  - `retries=auto`
+  - `workers=auto`
+  - `publish_to_pages=false`
+  - `timing_summary=true`
+- Weekly schedule (`0 8 * * 1`):
+  - `suite=regression-all`
+  - `browser=chromium`
+  - `retries=1`
+  - `workers=2`
+  - `publish_to_pages=false`
+  - `timing_summary=true`
 
 Note: Scheduled runs do not use manual `workflow_dispatch` input values.
 
