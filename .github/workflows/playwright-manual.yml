@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       suite:
-        description: Test suite to run (recommended first run: smoke)
+        description: "Test suite to run (recommended first run: smoke)"
         required: true
         default: all
         type: choice
@@ -19,7 +19,7 @@ on:
           - e2e-login
           - e2e-critical
       browser:
-        description: Browser project (recommended first run: chromium)
+        description: "Browser project (recommended first run: chromium)"
         required: true
         default: chromium
         type: choice
@@ -29,7 +29,7 @@ on:
           - webkit
           - all
       grep:
-        description: Optional grep filter (example: @critical)
+        description: "Optional grep filter (example: @critical)"
         required: false
         default: ""
         type: string
@@ -39,7 +39,7 @@ on:
         default: qa
         type: string
       publish_to_pages:
-        description: Publish report to GitHub Pages (recommended first run: false)
+        description: "Publish report to GitHub Pages (recommended first run: false)"
         required: true
         default: "false"
         type: choice
