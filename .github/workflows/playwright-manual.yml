@@ -264,12 +264,20 @@ jobs:
       - name: Deploy to GitHub Pages
         if: always() && inputs.publish_to_pages == 'true'
         id: deployment
+        continue-on-error: true
         uses: actions/deploy-pages@v4
 
       - name: Print GitHub Pages URL
-        if: always() && inputs.publish_to_pages == 'true'
+        if: always() && inputs.publish_to_pages == 'true' && steps.deployment.outcome == 'success'
         run: |
           echo "Live report URL: ${{ steps.deployment.outputs.page_url }}"
+
+      - name: Warn when GitHub Pages publish fails
+        if: always() && inputs.publish_to_pages == 'true' && steps.deployment.outcome != 'success'
+        run: |
+          echo "GitHub Pages publish failed or is not enabled for this repo." >> "$GITHUB_STEP_SUMMARY"
+          echo "Enable Pages at: https://github.com/cameronindetroit/enterprise-playwright-automation-framework/settings/pages" >> "$GITHUB_STEP_SUMMARY"
+          echo "Set Source to GitHub Actions, or run with publish_to_pages=false." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Publish timing summary
         if: always() && inputs.timing_summary == 'true'
