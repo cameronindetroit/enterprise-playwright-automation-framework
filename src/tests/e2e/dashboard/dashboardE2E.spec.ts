@@ -1,6 +1,6 @@
-import { test, expect } from "../fixtures";
-import PageManager from "../../pages/PageManager";
-import DashboardE2EHelper from "../helpers/DashboardE2EHelper";
+import { test, expect } from "../../fixtures";
+import PageManager from "../../../pages/PageManager";
+import DashboardE2EHelper from "../../helpers/DashboardE2EHelper";
 
 const UI_TIMEOUT = 20000;
 const KPI_UPDATE_TIMEOUT = 45000;

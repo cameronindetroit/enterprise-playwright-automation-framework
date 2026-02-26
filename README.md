@@ -142,16 +142,16 @@ npm run e2e:critical
 
 Run dashboard E2E suite:
 
-npx playwright test src/tests/e2e/dashboardE2E.spec.ts
+npx playwright test src/tests/e2e/dashboard/dashboardE2E.spec.ts
 
 Run dashboard regression suite:
 
-npx playwright test src/tests/regression/dashboard.*.regression.spec.ts
+npx playwright test src/tests/regression/dashboard/dashboard.*.regression.spec.ts
 
 Run dedicated smoke suites:
 
 npx playwright test src/tests/smoke
-npx playwright test src/tests/smoke/dashboardSmoke.spec.ts
+npx playwright test src/tests/smoke/dashboard/dashboardSmoke.spec.ts
 
 Run tag-based subsets:
 
@@ -178,11 +178,11 @@ npx playwright test --ui
 
 Run one file:
 
-npx playwright test src/tests/dashboardTest.spec.ts
+npx playwright test src/tests/regression/dashboard/dashboard.navigation.regression.spec.ts
 
 Run one test by title:
 
-npx playwright test src/tests/dashboardTest.spec.ts -g "Event tab navigation"
+npx playwright test src/tests/regression/dashboard/dashboard.navigation.regression.spec.ts -g "Event tab navigation"
 
 Run one project/browser:
 
@@ -204,17 +204,17 @@ Screenshots and artifacts:
 
 ## Current Test Files
 
-- `src/tests/e2e/dashboardE2E.spec.ts`
-- `src/tests/smoke/dashboardSmoke.spec.ts`
-- `src/tests/regression/dashboard.kpi.regression.spec.ts`
-- `src/tests/regression/dashboard.dropdown.regression.spec.ts`
-- `src/tests/regression/dashboard.navigation.regression.spec.ts`
-- `src/tests/regression/dashboard.contact.regression.spec.ts`
+- `src/tests/e2e/dashboard/dashboardE2E.spec.ts`
+- `src/tests/smoke/dashboard/dashboardSmoke.spec.ts`
+- `src/tests/regression/dashboard/dashboard.kpi.regression.spec.ts`
+- `src/tests/regression/dashboard/dashboard.dropdown.regression.spec.ts`
+- `src/tests/regression/dashboard/dashboard.navigation.regression.spec.ts`
+- `src/tests/regression/dashboard/dashboard.contact.regression.spec.ts`
 - `src/tests/loginTest.spec.ts`
 
 ## Dashboard E2E Coverage
 
-`src/tests/e2e/dashboardE2E.spec.ts` currently validates:
+`src/tests/e2e/dashboard/dashboardE2E.spec.ts` currently validates:
 
 - Dashboard shell visibility post-login
 - Dashboard KPI/header elements

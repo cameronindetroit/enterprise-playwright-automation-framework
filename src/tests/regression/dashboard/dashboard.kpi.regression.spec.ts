@@ -1,5 +1,5 @@
-import { test, expect } from "../fixtures";
-import PageManager from "../../pages/PageManager";
+import { test, expect } from "../../fixtures";
+import PageManager from "../../../pages/PageManager";
 
 const UI_TIMEOUT = 20000;
 
