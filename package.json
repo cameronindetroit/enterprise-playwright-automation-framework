@@ -20,7 +20,7 @@
     "reg:smoke": "npx playwright test src/tests/regression --grep @smoke",
     "e2e:dashboard": "npx playwright test src/tests/e2e/dashboard/dashboardE2E.spec.ts",
     "e2e:critical": "npx playwright test src/tests/e2e --grep @critical",
-    "login": "npx playwright test src/tests/loginTest.spec.ts",
+    "login": "npx playwright test src/tests/regression/login/login.regression.spec.ts",
     "last": "npx playwright test --last-failed",
     "report": "npx playwright show-report"
   },
