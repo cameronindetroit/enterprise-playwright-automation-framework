@@ -1,5 +1,24 @@
 # HoneycombICP Playwright Automation
 
+[![Playwright Manual Run](https://github.com/cameronindetroit/enterprise-playwright-automation-framework/actions/workflows/playwright-manual.yml/badge.svg)](https://github.com/cameronindetroit/enterprise-playwright-automation-framework/actions/workflows/playwright-manual.yml)
+
+Quick access:
+
+- Run from web UI: https://github.com/cameronindetroit/enterprise-playwright-automation-framework/actions/workflows/playwright-manual.yml
+- Latest workflow runs: https://github.com/cameronindetroit/enterprise-playwright-automation-framework/actions
+
+## First-time setup checklist
+
+- [ ] Confirm workflow file exists: `.github/workflows/playwright-manual.yml`
+- [ ] Add repository secrets in GitHub → **Settings** → **Secrets and variables** → **Actions**:
+  - [ ] `HONEYCOMB_USERID`
+  - [ ] `HONEYCOMB_PASSWORD`
+- [ ] (Optional for live URL) Enable GitHub Pages in GitHub → **Settings** → **Pages**:
+  - [ ] **Source** = **GitHub Actions**
+- [ ] Trigger the workflow from the Actions page using **Run workflow**
+- [ ] For downloadable report, open artifact `playwright-html-report-<run_number>` and open `index.html`
+- [ ] For live report URL, set `publish_to_pages=true` and check deploy step output for `page_url`
+
 Playwright + TypeScript test framework for Honeycomb ICP workflows using Page Object Model (POM), centralized PageManager usage, and fixture-based login setup.
 
 The dashboard E2E flow now includes KPI snapshot comparison and event-dropdown load validation.
@@ -12,7 +31,8 @@ The dashboard E2E flow now includes KPI snapshot comparison and event-dropdown l
 `npm run chr` / `npm run ff` / `npm run wk` — run one browser project  
 `npm run dash` / `npm run login` — run key suites  
 `npm run reg:dashboard` / `npm run e2e:dashboard` — run targeted dashboard suites  
-`npm run smoke` / `npm run smoke:dashboard` — run dedicated smoke suite(s)  
+`npm run login` / `npm run e2e:login` — run targeted login suites  
+`npm run smoke` / `npm run smoke:dashboard` / `npm run smoke:login` — run dedicated smoke suite(s)  
 `npm run reg:smoke` / `npm run e2e:critical` — run CI-focused fast subsets  
 `npm run last` — rerun failed tests  
 `npm run report` — open HTML report
@@ -133,16 +153,22 @@ Run specific suites:
 
 npm run dash
 npm run login
+npm run e2e:login
 npm run reg:dashboard
 npm run e2e:dashboard
 npm run smoke
 npm run smoke:dashboard
+npm run smoke:login
 npm run reg:smoke
 npm run e2e:critical
 
 Run dashboard E2E suite:
 
 npx playwright test src/tests/e2e/dashboard/dashboardE2E.spec.ts
+
+Run login E2E suite:
+
+npx playwright test src/tests/e2e/login/loginE2E.spec.ts
 
 Run dashboard regression suite:
 
@@ -152,6 +178,7 @@ Run dedicated smoke suites:
 
 npx playwright test src/tests/smoke
 npx playwright test src/tests/smoke/dashboard/dashboardSmoke.spec.ts
+npx playwright test src/tests/smoke/login/loginSmoke.spec.ts
 
 Run tag-based subsets:
 
@@ -202,15 +229,118 @@ Screenshots and artifacts:
 
 - `test-results/`
 
+## Run From GitHub Web UI (Fastest)
+
+This repo includes a manual workflow at `.github/workflows/playwright-manual.yml`.
+
+Use it to run tests from the GitHub Actions webpage and download the HTML report.
+
+### One-time setup
+
+In your GitHub repository settings, add these **Actions secrets**:
+
+- `HONEYCOMB_USERID`
+- `HONEYCOMB_PASSWORD`
+
+These map to the runtime env vars expected by this framework (`userid` and `password`).
+
+### Trigger a run
+
+1. Open GitHub → **Actions** → **Playwright Manual Run**
+2. Click **Run workflow**
+3. Choose:
+  - `suite` (all / smoke / regression / e2e options)
+  - `browser` (chromium / firefox / webkit / all)
+  - optional `grep` tag filter (example `@critical`)
+  - `node_env` (default `qa`)
+  - `publish_to_pages` (`true` to publish live URL)
+4. Start the run
+
+Recommended first-run defaults:
+
+- `suite=smoke`
+- `browser=chromium`
+- `publish_to_pages=false`
+- leave `grep` empty
+
+### Get the HTML report
+
+When the run finishes (pass or fail), open the workflow run and download artifact:
+
+- `playwright-html-report-<run_number>`
+
+Unzip it and open `index.html` in a browser.
+
+### Optional: Live report URL via GitHub Pages
+
+If `publish_to_pages=true`, the workflow deploys `playwright-report/` to GitHub Pages and prints a live URL in run logs.
+
+One-time repo setup:
+
+1. GitHub repository → **Settings** → **Pages**
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**
+
+After each run with `publish_to_pages=true`:
+
+- Open the workflow run and check the deploy step output for `page_url`
+- The latest published report is available at that URL
+
+Note: GitHub Pages hosts one current version for this workflow deployment target (latest run replaces prior published report).
+
+### Troubleshooting (GitHub Actions)
+
+- **Missing secrets / login failures**
+  - Symptom: Tests fail at login or env-based auth steps.
+  - Fix: Verify repository secrets exist and are correctly named:
+    - `HONEYCOMB_USERID`
+    - `HONEYCOMB_PASSWORD`
+  - Fix: Re-run workflow after updating secrets (secrets are not retroactive to completed runs).
+
+- **`publish_to_pages=true` but no live URL**
+  - Symptom: Deploy step is skipped or fails.
+  - Fix: In GitHub → **Settings** → **Pages**, set **Source** to **GitHub Actions**.
+  - Fix: Ensure workflow has `pages: write` and `id-token: write` permissions (already configured in this repo).
+
+- **Workflow runs, but report artifact is missing**
+  - Symptom: No `playwright-html-report-<run_number>` artifact.
+  - Fix: Check test step logs for early setup failure before report generation.
+  - Fix: Confirm Playwright report path is `playwright-report/` (default in this framework).
+
+- **Wrong environment data used**
+  - Symptom: Tests hit unexpected environment/config.
+  - Fix: Set `node_env` input to match `src/config/.env.<node_env>`.
+  - Example: `qa` uses `src/config/.env.qa`.
+
+- **Runs are slow or timing out**
+  - Symptom: Workflow exceeds expected runtime.
+  - Fix: Select smaller suites first (`smoke`, `smoke-dashboard`, `smoke-login`).
+  - Fix: Use one browser (`chromium`) before scaling to `all`.
+
+#### Failure signatures quick map
+
+| Log/Error Signature | Likely Cause | Action |
+| --- | --- | --- |
+| `Error: userid is undefined` or login credential empty | Missing/incorrect Actions secrets | Add `HONEYCOMB_USERID` and `HONEYCOMB_PASSWORD` in repo Actions secrets, then re-run |
+| `Error: password is undefined` | Missing/incorrect Actions secrets | Recreate secret with exact name and verify non-empty value |
+| `No tests found` | Suite path/grep mismatch | Use `suite=all` first, clear `grep`, then narrow scope |
+| `Error: Project(s) "..." not found` | Browser/project input typo | Use only `chromium`, `firefox`, `webkit`, or `all` |
+| `deploy-pages` skipped / no `page_url` output | Pages not enabled for Actions | Set repo **Settings → Pages → Source = GitHub Actions** |
+| `Artifact not found: playwright-report/` | Test command failed before report generation | Check earlier failing step logs; fix setup/auth failure first |
+| `Timeout of 60 minutes exceeded` | Large suite + multi-browser run | Start with `smoke` + `chromium`, then scale up |
+
 ## Current Test Files
 
 - `src/tests/e2e/dashboard/dashboardE2E.spec.ts`
+- `src/tests/e2e/login/loginE2E.spec.ts`
 - `src/tests/smoke/dashboard/dashboardSmoke.spec.ts`
+- `src/tests/smoke/login/loginSmoke.spec.ts`
 - `src/tests/regression/dashboard/dashboard.kpi.regression.spec.ts`
 - `src/tests/regression/dashboard/dashboard.dropdown.regression.spec.ts`
 - `src/tests/regression/dashboard/dashboard.navigation.regression.spec.ts`
 - `src/tests/regression/dashboard/dashboard.contact.regression.spec.ts`
-- `src/tests/loginTest.spec.ts`
+- `src/tests/regression/login/login.success.regression.spec.ts`
+- `src/tests/regression/login/login.invalid-password.regression.spec.ts`
+- `src/tests/regression/login/login.forgot-password.regression.spec.ts`
 
 ## Dashboard E2E Coverage
 

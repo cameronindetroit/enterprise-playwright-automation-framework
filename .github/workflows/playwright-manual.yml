@@ -1,0 +1,175 @@
+name: Playwright Manual Run
+
+on:
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: Test suite to run (recommended first run: smoke)
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - smoke
+          - smoke-dashboard
+          - smoke-login
+          - regression-dashboard
+          - regression-login
+          - e2e-dashboard
+          - e2e-login
+          - e2e-critical
+      browser:
+        description: Browser project (recommended first run: chromium)
+        required: true
+        default: chromium
+        type: choice
+        options:
+          - chromium
+          - firefox
+          - webkit
+          - all
+      grep:
+        description: Optional grep filter (example: @critical)
+        required: false
+        default: ""
+        type: string
+      node_env:
+        description: Environment file selector for src/config/.env.<NODE_ENV>
+        required: false
+        default: qa
+        type: string
+      publish_to_pages:
+        description: Publish report to GitHub Pages (recommended first run: false)
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  playwright:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+      NODE_ENV: ${{ inputs.node_env }}
+      userid: ${{ secrets.HONEYCOMB_USERID }}
+      password: ${{ secrets.HONEYCOMB_PASSWORD }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run selected Playwright suite
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          SUITE="${{ inputs.suite }}"
+          BROWSER="${{ inputs.browser }}"
+          GREP_FILTER="${{ inputs.grep }}"
+
+          CMD=(npx playwright test)
+
+          case "$SUITE" in
+            all)
+              ;;
+            smoke)
+              CMD+=(src/tests/smoke)
+              ;;
+            smoke-dashboard)
+              CMD+=(src/tests/smoke/dashboard/dashboardSmoke.spec.ts)
+              ;;
+            smoke-login)
+              CMD+=(src/tests/smoke/login/loginSmoke.spec.ts)
+              ;;
+            regression-dashboard)
+              CMD+=(src/tests/regression/dashboard/dashboard.*.regression.spec.ts)
+              ;;
+            regression-login)
+              CMD+=(src/tests/regression/login/login.*.regression.spec.ts)
+              ;;
+            e2e-dashboard)
+              CMD+=(src/tests/e2e/dashboard/dashboardE2E.spec.ts)
+              ;;
+            e2e-login)
+              CMD+=(src/tests/e2e/login/loginE2E.spec.ts)
+              ;;
+            e2e-critical)
+              CMD+=(src/tests/e2e --grep @critical)
+              ;;
+            *)
+              echo "Unsupported suite: $SUITE"
+              exit 1
+              ;;
+          esac
+
+          if [ "$BROWSER" != "all" ]; then
+            CMD+=(--project="$BROWSER")
+          fi
+
+          if [ -n "$GREP_FILTER" ]; then
+            CMD+=(--grep "$GREP_FILTER")
+          fi
+
+          echo "Running: ${CMD[*]}"
+          "${CMD[@]}"
+
+      - name: Upload Playwright HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report-${{ github.run_number }}
+          path: playwright-report/
+          retention-days: 14
+
+      - name: Upload Playwright raw results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-test-results-${{ github.run_number }}
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Configure GitHub Pages
+        if: always() && inputs.publish_to_pages == 'true'
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        if: always() && inputs.publish_to_pages == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: playwright-report/
+
+      - name: Deploy to GitHub Pages
+        if: always() && inputs.publish_to_pages == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Print GitHub Pages URL
+        if: always() && inputs.publish_to_pages == 'true'
+        run: |
+          echo "Live report URL: ${{ steps.deployment.outputs.page_url }}"
