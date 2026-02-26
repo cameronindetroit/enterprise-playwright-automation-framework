@@ -1,4 +1,4 @@
-import { test as base, expect } from "@playwright/test";
+import { test as base, expect, devices } from "@playwright/test";
 import { decrypt } from "../utils/CryptojsUtil";
 import PageManager from "../pages/PageManager";
 import fs from "fs/promises";
@@ -12,10 +12,11 @@ type WorkerFixtures = {
   authStatePath: string;
 };
 
-const UI_TIMEOUT = 30000;
+const UI_TIMEOUT = 45000;
 
 async function loginWithCredentials(pageManager: PageManager) {
   const loginPage = pageManager.getLoginPage();
+  await loginPage.waitForLoginForm();
   await loginPage.fillUsername(resolveCredential(process.env.userid));
   await loginPage.fillPassword(resolveCredential(process.env.password));
   await loginPage.clickLoginButton();
@@ -55,6 +56,30 @@ async function ensureAuthenticatedDashboard(pageManager: PageManager) {
   if (!dashboardVisible) {
     const stillOnLogin = await loginPage.isLoginFormVisible(2000);
     if (stillOnLogin) {
+      const loginInProgress = await loginPage.isLoginInProgress(2000);
+      if (loginInProgress) {
+        const dashboardVisibleAfterSlowLogin = await dashboardReadyIndicator
+          .isVisible({ timeout: 30000 })
+          .catch(() => false);
+
+        if (dashboardVisibleAfterSlowLogin) {
+          await expect(dashboardReadyIndicator).toBeVisible({ timeout: UI_TIMEOUT });
+          return;
+        }
+      }
+
+      await loginPage.navigate();
+      await loginWithCredentials(pageManager);
+
+      const dashboardVisibleAfterRecovery = await dashboardReadyIndicator
+        .isVisible({ timeout: 30000 })
+        .catch(() => false);
+
+      if (dashboardVisibleAfterRecovery) {
+        await expect(dashboardReadyIndicator).toBeVisible({ timeout: UI_TIMEOUT });
+        return;
+      }
+
       throw new Error(
         "Authentication did not reach dashboard. Verify HONEYCOMB_USERID/HONEYCOMB_PASSWORD secrets and app login availability.",
       );
@@ -85,7 +110,16 @@ export const test = base.extend<Fixtures, WorkerFixtures>({
 
       await fs.mkdir(authDirPath, { recursive: true });
 
-      const context = await browser.newContext();
+      const projectDeviceSettings =
+        workerInfo.project.name === "chromium"
+          ? devices["Desktop Chrome"]
+          : workerInfo.project.name === "firefox"
+            ? devices["Desktop Firefox"]
+            : workerInfo.project.name === "webkit"
+              ? devices["Desktop Safari"]
+              : {};
+
+      const context = await browser.newContext(projectDeviceSettings);
       const page = await context.newPage();
       const pageManager = new PageManager(page);
 

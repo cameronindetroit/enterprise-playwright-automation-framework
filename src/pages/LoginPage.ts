@@ -17,6 +17,12 @@ async navigate() {
     });
 
 }
+
+async waitForLoginForm(timeout = 20000) {
+    await this.page.locator(this.usernameInputSelector).waitFor({ state: "visible", timeout });
+    await this.page.locator(this.passwordInputSelector).waitFor({ state: "visible", timeout });
+}
+
 async fillUsername(username: string) {
     await this.page.fill(this.usernameInputSelector, username).catch((error) => {
         console.error(`Error filling username: ${error}`);
@@ -58,6 +64,14 @@ async isLoginFormVisible(timeout = 2000) {
         .catch(() => false);
 
     return emailInputVisible && passwordInputVisible;
+}
+
+async isLoginInProgress(timeout = 2000) {
+    return this.page
+        .getByRole("progressbar")
+        .first()
+        .isVisible({ timeout })
+        .catch(() => false);
 }
 
 }
