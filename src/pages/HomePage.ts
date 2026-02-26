@@ -75,7 +75,12 @@ export default class HomePage {
     }
 
     getEventTab() {
-        return this.page.locator('a:has-text("Events"), button:has-text("Events"), [role="tab"]:has-text("Events"), text=/^Events$/i').first();
+        return this.page
+            .getByRole("tab", { name: /Events/i })
+            .or(this.page.getByRole("link", { name: /Events/i }))
+            .or(this.page.getByRole("button", { name: /Events/i }))
+            .or(this.page.getByText(/^Events$/i))
+            .first();
     }
 
     getICPTab() {
@@ -99,7 +104,7 @@ export default class HomePage {
     }
 
     getDashboardReadyIndicator() {
-        return this.page.locator('text=/Dashboard/i, a:has-text("Events"), button:has-text("Events"), [role="tab"]:has-text("Events")').first();
+        return this.page.getByText(/Dashboard/i).first();
     }
 
     private async clickTab(tab: Locator, tabName: string) {

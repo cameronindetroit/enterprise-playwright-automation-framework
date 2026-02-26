@@ -1,4 +1,4 @@
-import { test, expect } from "../../fixtures";
+import { test, expect } from "./dashboardRegression.fixtures";
 import DashboardE2EHelper from "../../helpers/DashboardE2EHelper";
 
 const UI_TIMEOUT = 20000;

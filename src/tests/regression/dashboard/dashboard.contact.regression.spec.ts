@@ -1,4 +1,4 @@
-import { test, expect } from "../../fixtures";
+import { test, expect } from "./dashboardRegression.fixtures";
 
 const UI_TIMEOUT = 20000;
 
