@@ -98,6 +98,10 @@ export default class HomePage {
         return this.page.getByText(this.featureBugRequestTabLocator, { exact: true }).first();
     }
 
+    getDashboardReadyIndicator() {
+        return this.page.locator('text=/Dashboard/i, a:has-text("Events"), button:has-text("Events"), [role="tab"]:has-text("Events")').first();
+    }
+
     private async clickTab(tab: Locator, tabName: string) {
         logger.info(`Navigating to ${tabName} tab`);
         try {

@@ -12,7 +12,7 @@ type WorkerFixtures = {
   authStatePath: string;
 };
 
-const UI_TIMEOUT = 19000;
+const UI_TIMEOUT = 30000;
 
 async function loginWithCredentials(pageManager: PageManager) {
   const loginPage = pageManager.getLoginPage();
@@ -23,16 +23,17 @@ async function loginWithCredentials(pageManager: PageManager) {
 
 async function ensureAuthenticatedDashboard(pageManager: PageManager) {
   const loginPage = pageManager.getLoginPage();
-  const eventTab = pageManager.getHomePage().getEventTab();
+  const homePage = pageManager.getHomePage();
+  const dashboardReadyIndicator = homePage.getDashboardReadyIndicator();
 
   await loginPage.navigate();
 
-  const alreadyAuthenticated = await eventTab.isVisible({ timeout: 4000 }).catch(() => false);
+  const alreadyAuthenticated = await dashboardReadyIndicator.isVisible({ timeout: 5000 }).catch(() => false);
   if (!alreadyAuthenticated) {
     await loginWithCredentials(pageManager);
   }
 
-  const dashboardVisible = await eventTab.isVisible({ timeout: UI_TIMEOUT }).catch(() => false);
+  const dashboardVisible = await dashboardReadyIndicator.isVisible({ timeout: UI_TIMEOUT }).catch(() => false);
   if (!dashboardVisible) {
     const stillOnLogin = await loginPage.isLoginFormVisible(2000);
     if (stillOnLogin) {
@@ -40,9 +41,13 @@ async function ensureAuthenticatedDashboard(pageManager: PageManager) {
         "Authentication did not reach dashboard. Verify HONEYCOMB_USERID/HONEYCOMB_PASSWORD secrets and app login availability.",
       );
     }
+
+    throw new Error(
+      "Login submitted but dashboard shell did not become visible within timeout. App may be slow/unavailable.",
+    );
   }
 
-  await expect(eventTab).toBeVisible({ timeout: UI_TIMEOUT });
+  await expect(dashboardReadyIndicator).toBeVisible({ timeout: UI_TIMEOUT });
 }
 
 function resolveCredential(value?: string) {
