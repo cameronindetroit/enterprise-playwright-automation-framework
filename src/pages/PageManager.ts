@@ -8,6 +8,7 @@ import SettingsPage from "./SettingsPage";
 import FAQPage from "./FAQPage";
 import FeatureBugRequestPage from "./FeatureBugRequestPage";
 import DashboardPage from "./DashboardPage";
+import DashboardKpisPage from "./DashboardKpisPage";
 
 export default class PageManager {
   private loginPage?: LoginPage;
@@ -19,6 +20,7 @@ export default class PageManager {
   private faqPage?: FAQPage;
   private featureBugRequestPage?: FeatureBugRequestPage;
   private dashboardPage?: DashboardPage;
+  private dashboardKpisPage?: DashboardKpisPage;
 
   constructor(private page: Page) {}
 
@@ -83,5 +85,12 @@ export default class PageManager {
       this.dashboardPage = new DashboardPage(this.page);
     }
     return this.dashboardPage;
+  }
+
+  getDashboardKpisPage() {
+    if (!this.dashboardKpisPage) {
+      this.dashboardKpisPage = new DashboardKpisPage(this.page);
+    }
+    return this.dashboardKpisPage;
   }
 }

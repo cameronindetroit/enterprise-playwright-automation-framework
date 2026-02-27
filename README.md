@@ -81,6 +81,16 @@ Enable strict mode for a run:
 
 Use strict mode only when the token is intentionally stable in your environment.
 
+### Dashboard Data Artifact Safety
+
+The regression test `src/tests/regression/dashboard/dashboard.data.regression.spec.ts` includes token-aware endpoint validation. To reduce accidental exposure of sensitive query-param tokens in test artifacts:
+
+- Trace is disabled for this spec (`test.use({ trace: "off" })`)
+- Screenshots are disabled for this spec (`test.use({ screenshot: "off" })`)
+- The test reads the intercepted response directly and does not replay the full tokenized URL with `page.request.get(...)`
+
+Recommendation: treat generated reports and artifacts as sensitive and keep retention/access limited in CI.
+
 ## Test Architecture
 
 ### Page Object Model
@@ -241,6 +251,8 @@ HTML report output:
 Screenshots and artifacts:
 
 - `test-results/`
+
+For dashboard API token handling guidance, see **Dashboard Data Artifact Safety** in Environment Configuration.
 
 ## Run From GitHub Web UI (Fastest)
 
