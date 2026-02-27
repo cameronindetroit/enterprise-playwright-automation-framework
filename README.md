@@ -68,6 +68,19 @@ Credentials are expected in env variables:
 
 The fixture supports encrypted or plain values. If encrypted values are used, decryption is handled with `CryptojsUtil`.
 
+### Dashboard Data Endpoint Strict Mode (Optional)
+
+The regression test `src/tests/regression/dashboard/dashboard.data.regression.spec.ts` validates the dashboard data endpoint request.
+
+- Default mode (recommended for CI): validates endpoint path/query params and checks `auth[0][value]` is a valid JWE-style token format.
+- Strict mode (opt-in): if `EXPECTED_DASHBOARD_AUTH_TOKEN` is set, the test requires an exact match for `auth[0][value]`.
+
+Enable strict mode for a run:
+
+`EXPECTED_DASHBOARD_AUTH_TOKEN="<full_token_here>" npx playwright test src/tests/regression/dashboard/dashboard.data.regression.spec.ts --project=chromium`
+
+Use strict mode only when the token is intentionally stable in your environment.
+
 ## Test Architecture
 
 ### Page Object Model
