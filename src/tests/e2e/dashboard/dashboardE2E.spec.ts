@@ -35,13 +35,17 @@ test.describe("Dashboard KPIs", () => {
 
 test("Event dropdown loads selected event and refreshes dashboard KPIs @e2e @critical", async ({ pageManager, page }, testInfo) => {
   const dashboardPage = pageManager.getDashboardPage();
+  const dashboardGraphPage = pageManager.getDashboardGraphPage();
 
   await expect(dashboardPage.getDashboardTitle()).toBeVisible({ timeout: UI_TIMEOUT });
   await expect(dashboardPage.getEventDropdown()).toBeVisible({ timeout: UI_TIMEOUT });
 
   await DashboardE2EHelper.waitForKpisToLoad(pageManager, KPI_UPDATE_TIMEOUT);
+  await expect(dashboardGraphPage.getGraphContainer()).toBeVisible({ timeout: UI_TIMEOUT });
 
   const kpiDataBefore = await DashboardE2EHelper.attachKpiSnapshot(pageManager, testInfo, "kpi-snapshot-before");
+  const graphContainerTextBefore = await dashboardGraphPage.getGraphContainerText();
+  const graphIcpMatchRateBefore = await dashboardGraphPage.getIcpMatchRatePercentageValue();
 
   const optionToSelect = await DashboardE2EHelper.selectRandomEventFromDropdown(pageManager, page, UI_TIMEOUT);
   test.skip(!optionToSelect, "No selectable event options are available in this environment.");
@@ -56,10 +60,27 @@ test("Event dropdown loads selected event and refreshes dashboard KPIs @e2e @cri
   await DashboardE2EHelper.waitForKpiChange(pageManager, kpiDataBefore, KPI_UPDATE_TIMEOUT);
 
   const kpiDataAfter = await DashboardE2EHelper.attachKpiSnapshot(pageManager, testInfo, "kpi-snapshot-after");
+  await expect(dashboardGraphPage.getGraphContainer()).toBeVisible({ timeout: UI_TIMEOUT });
+
+  await expect
+    .poll(async () => {
+      const currentGraphText = await dashboardGraphPage.getGraphContainerText();
+      const currentIcpMatchRate = await dashboardGraphPage.getIcpMatchRatePercentageValue();
+      const hasGraphStateChanged =
+        currentGraphText !== graphContainerTextBefore || currentIcpMatchRate !== graphIcpMatchRateBefore;
+      return hasGraphStateChanged && currentIcpMatchRate !== null;
+    }, { timeout: KPI_UPDATE_TIMEOUT })
+    .toBeTruthy();
+
+  const graphContainerTextAfter = await dashboardGraphPage.getGraphContainerText();
+  const graphIcpMatchRateAfter = await dashboardGraphPage.getIcpMatchRatePercentageValue();
 
   const hasKpiChange = DashboardE2EHelper.hasKpiChange(kpiDataBefore, kpiDataAfter);
+  const hasGraphChange =
+    graphContainerTextBefore !== graphContainerTextAfter || graphIcpMatchRateBefore !== graphIcpMatchRateAfter;
 
   expect(hasKpiChange).toBeTruthy();
+  expect(hasGraphChange).toBeTruthy();
   expect(kpiDataAfter).not.toEqual(kpiDataBefore);
 });
 
