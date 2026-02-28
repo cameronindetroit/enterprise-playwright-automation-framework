@@ -55,7 +55,10 @@ export default class DashboardPage {
     }
 
     getEventDropdown() {
-        return this.page.getByRole("combobox").first();
+        return this.page
+            .locator("select")
+            .filter({ has: this.page.locator("option", { hasText: this.selectEventPlaceholder }) })
+            .first();
     }
 
     getEventDropdownOptions() {

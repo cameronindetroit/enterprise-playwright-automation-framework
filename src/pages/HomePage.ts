@@ -12,6 +12,7 @@ export default class HomePage {
     private readonly settingsTabLocator = "Settings";
     private readonly faqTabLocator = "FAQ";
     private readonly featureBugRequestTabLocator = "Feature/Bug Request";
+    private readonly contactAccountAdminTitleLocator = /Contact\s+Account\s+Admin/i;
     private contactAccountAdminModalPage?: ContactAccountAdminModalPage;
 
     constructor(private page: Page) {
@@ -27,7 +28,12 @@ export default class HomePage {
     }
 
     getContact() {
-        return this.page.getByText(this.contactLocator).first();
+        return this.page
+            .getByRole("button", { name: /^Contact$/i })
+            .or(this.page.getByRole("link", { name: /^Contact$/i }))
+            .or(this.page.getByRole("tab", { name: /^Contact$/i }))
+            .or(this.page.getByText(/^Contact$/i))
+            .first();
     }
 
     getContactAccountAdminModalPage() {
@@ -59,7 +65,28 @@ export default class HomePage {
     }
 
     async openContactModal() {
-        await this.getContact().click();
+        const contact = this.getContact();
+        await contact.scrollIntoViewIfNeeded().catch(() => null);
+
+        const modalTitle = this.page.getByText(this.contactAccountAdminTitleLocator).first();
+        const maxAttempts = 3;
+
+        for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+            try {
+                await contact.click({ timeout: 10000 });
+            } catch {
+                await contact.click({ force: true });
+            }
+
+            const isVisible = await modalTitle.isVisible().catch(() => false);
+            if (isVisible) {
+                return;
+            }
+
+            await this.page.waitForTimeout(500);
+        }
+
+        await modalTitle.waitFor({ state: "visible", timeout: 20000 });
     }
 
     async fillContactEmailTitle(title: string) {

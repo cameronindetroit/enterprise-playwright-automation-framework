@@ -27,7 +27,7 @@ test("Regression | Forgot Password flow returns to login @regression", async ({ 
   await page.getByText("Forgot Password?", { exact: true }).click();
   await resetPanel.getByText("Back to log in", { exact: true }).click({ force: true });
 
-  await expect(page.getByPlaceholder("Email")).toBeVisible({ timeout: UI_TIMEOUT });
-  await expect(page.getByPlaceholder("Password")).toBeVisible({ timeout: UI_TIMEOUT });
+  await expect(page.locator("input[placeholder='Email']").first()).toBeVisible({ timeout: UI_TIMEOUT });
+  await expect(page.locator("input[placeholder='Password']").first()).toBeVisible({ timeout: UI_TIMEOUT });
   await expect(page.getByText("Sign In", { exact: true })).toBeVisible({ timeout: UI_TIMEOUT });
 });

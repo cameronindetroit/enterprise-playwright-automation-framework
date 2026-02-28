@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 
 export default class ContactAccountAdminModalPage {
-    private readonly contactAccountAdminTitleLocator = "Contact Account Admin";
+    private readonly contactAccountAdminTitleLocator = /Contact\s+Account\s+Admin/i;
     private readonly contactSendButtonLocator = /Send/i;
 
     constructor(private page: Page) {
@@ -9,23 +9,30 @@ export default class ContactAccountAdminModalPage {
     }
 
     getTitle() {
-        return this.page.getByText(this.contactAccountAdminTitleLocator, { exact: true }).first();
+        return this.page.getByText(this.contactAccountAdminTitleLocator).first();
     }
 
     getModal() {
-        return this.page
+        const roleModal = this.page
+            .getByRole("dialog")
+            .filter({ hasText: this.contactAccountAdminTitleLocator })
+            .first();
+
+        const textModal = this.page
             .locator("div")
             .filter({ hasText: this.contactAccountAdminTitleLocator })
             .filter({ has: this.page.locator("input, textarea") })
             .first();
+
+        return roleModal.or(textModal).first();
     }
 
     getEmailTitleInput() {
-        return this.getModal().getByRole("textbox", { name: "Email Title" }).first();
+        return this.getModal().getByRole("textbox", { name: /Email\s*Title/i }).first();
     }
 
     getBodyInput() {
-        return this.getModal().getByRole("textbox", { name: "Email Body" }).first();
+        return this.getModal().getByRole("textbox", { name: /Email\s*Body/i }).first();
     }
 
     getSendButton() {

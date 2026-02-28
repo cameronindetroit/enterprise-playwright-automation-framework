@@ -9,6 +9,7 @@ import FAQPage from "./FAQPage";
 import FeatureBugRequestPage from "./FeatureBugRequestPage";
 import DashboardPage from "./DashboardPage";
 import DashboardKpisPage from "./DashboardKpisPage";
+import DashboardGraphPage from "./DashboardGraphPage";
 
 export default class PageManager {
   private loginPage?: LoginPage;
@@ -21,6 +22,7 @@ export default class PageManager {
   private featureBugRequestPage?: FeatureBugRequestPage;
   private dashboardPage?: DashboardPage;
   private dashboardKpisPage?: DashboardKpisPage;
+  private dashboardGraphPage?: DashboardGraphPage;
 
   constructor(private page: Page) {}
 
@@ -92,5 +94,12 @@ export default class PageManager {
       this.dashboardKpisPage = new DashboardKpisPage(this.page);
     }
     return this.dashboardKpisPage;
+  }
+
+  getDashboardGraphPage() {
+    if (!this.dashboardGraphPage) {
+      this.dashboardGraphPage = new DashboardGraphPage(this.page);
+    }
+    return this.dashboardGraphPage;
   }
 }

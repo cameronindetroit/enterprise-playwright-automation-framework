@@ -39,7 +39,7 @@ export default class DashboardKpiDataHelper {
     return match ? match[0] : "";
   }
 
-  private static findValueByAliases(payload: unknown, aliases: string[]): unknown {
+  private static findValueByAliases(payload: unknown, aliases: readonly string[]): unknown {
     if (!this.isRecord(payload) && !Array.isArray(payload)) {
       return undefined;
     }
