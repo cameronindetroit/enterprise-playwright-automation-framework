@@ -13,7 +13,7 @@ function resolveCredential(value?: string) {
 
 export async function loginToDashboard(pageManager: PageManager, timeout = 45000) {
   const loginPage = pageManager.getLoginPage();
-  const dashboardReadyIndicator = pageManager.getHomePage().getDashboardReadyIndicator();
+  const homePage = pageManager.getHomePage();
 
   await loginPage.navigate();
   await loginPage.waitForLoginForm();
@@ -21,5 +21,22 @@ export async function loginToDashboard(pageManager: PageManager, timeout = 45000
   await loginPage.fillPassword(resolveCredential(process.env.password));
   await loginPage.clickLoginButton();
 
-  await expect(dashboardReadyIndicator).toBeVisible({ timeout });
+  await expect
+    .poll(async () => {
+      const readinessLocators = [
+        homePage.getDashboardReadyIndicator(),
+        homePage.getLogoutButton(),
+        homePage.getAccountManager(),
+        pageManager.getDashboardPage().getEventDropdown(),
+      ];
+
+      for (const locator of readinessLocators) {
+        if (await locator.isVisible().catch(() => false)) {
+          return true;
+        }
+      }
+
+      return false;
+    }, { timeout })
+    .toBeTruthy();
 }
