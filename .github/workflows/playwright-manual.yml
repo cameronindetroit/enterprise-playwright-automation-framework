@@ -3,8 +3,8 @@ run-name: >-
   ${{
     github.event_name == 'workflow_dispatch'
       && format('Playwright {0} | {1}', inputs.suite, inputs.browser)
-      || (github.event.schedule == '0 8 * * 1'
-        && 'Playwright regression-all | scheduled weekly'
+      || (github.event.schedule == '0 2 * * *'
+        && 'Playwright regression-all | scheduled daily'
         || (github.event.schedule == '0 8 * * 5'
           && 'Playwright e2e-critical | scheduled weekly'
           || 'Playwright smoke | scheduled hourly'))
@@ -88,7 +88,7 @@ on:
           - "false"
   schedule:
     - cron: '0 * * * *'
-    - cron: '0 8 * * 1'
+    - cron: '0 2 * * *'
     - cron: '0 8 * * 5'
 
 permissions:
@@ -189,7 +189,7 @@ jobs:
           STEP_START=$(date +%s)
 
           if [ "$EVENT_NAME" = "schedule" ]; then
-            if [ "$EVENT_SCHEDULE" = "0 8 * * 1" ]; then
+            if [ "$EVENT_SCHEDULE" = "0 2 * * *" ]; then
               SUITE="regression-all"
               BROWSER="chromium"
               GREP_FILTER=""
