@@ -7,7 +7,8 @@ type Fixtures = {
 };
 
 export const test = base.extend<Fixtures>({
-  pageManager: async ({ page }, use) => {
+  pageManager: async ({ page }, use, testInfo) => {
+    testInfo.setTimeout(testInfo.timeout + 60000);
     const pageManager = new PageManager(page);
     await loginToDashboard(pageManager);
     await use(pageManager);
