@@ -5,16 +5,34 @@ export default class LoginPage {
 private readonly usernameInputSelector = "[placeholder='Email']"
 private readonly passwordInputSelector = "[placeholder='Password']"
 private readonly loginButtonSelector = "text=Sign In"
+private readonly loginPageUrl = "https://www.ourecosystem.io/honeycombicp"
 
 constructor(private page: Page) {
 
 }
 
 async navigate() {
-    await this.page.goto("https://www.ourecosystem.io/honeycombicp").catch((error) => {
-        console.error(`Error navigating to login page: ${error}`);
-        throw error;
-    });
+    const maxAttempts = 3;
+    let lastError: unknown = null;
+
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+        try {
+            await this.page.goto(this.loginPageUrl, { waitUntil: "domcontentloaded", timeout: 30000 });
+            return;
+        } catch (error) {
+            lastError = error;
+            const isLastAttempt = attempt === maxAttempts;
+
+            if (isLastAttempt) {
+                console.error(`Error navigating to login page after ${maxAttempts} attempts: ${error}`);
+                throw error;
+            }
+
+            await this.page.waitForTimeout(1000 * attempt);
+        }
+    }
+
+    throw lastError;
 
 }
 

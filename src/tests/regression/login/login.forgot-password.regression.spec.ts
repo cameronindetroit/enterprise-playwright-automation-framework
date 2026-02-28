@@ -5,9 +5,12 @@ const UI_TIMEOUT = 20000;
 
 test("Regression | Forgot Password flow opens reset screen @regression", async ({ page }) => {
   const loginPage = new LoginPage(page);
+  const forgotPasswordLink = page.getByText("Forgot Password?", { exact: true }).first();
 
   await loginPage.navigate();
-  await page.getByText("Forgot Password?", { exact: true }).click();
+  await loginPage.waitForLoginForm(UI_TIMEOUT);
+  await expect(forgotPasswordLink).toBeVisible({ timeout: UI_TIMEOUT });
+  await forgotPasswordLink.click();
 
   await expect(page.getByText("Forgot Password?", { exact: true }).last()).toBeVisible({ timeout: UI_TIMEOUT });
   await expect(page.getByRole("textbox", { name: "Enter Email" })).toBeVisible({ timeout: UI_TIMEOUT });
@@ -17,6 +20,7 @@ test("Regression | Forgot Password flow opens reset screen @regression", async (
 
 test("Regression | Forgot Password flow returns to login @regression", async ({ page }) => {
   const loginPage = new LoginPage(page);
+  const forgotPasswordLink = page.getByText("Forgot Password?", { exact: true }).first();
   const resetPanel = page
     .locator("div")
     .filter({ hasText: "Forgot Password?" })
@@ -24,7 +28,9 @@ test("Regression | Forgot Password flow returns to login @regression", async ({ 
     .first();
 
   await loginPage.navigate();
-  await page.getByText("Forgot Password?", { exact: true }).click();
+  await loginPage.waitForLoginForm(UI_TIMEOUT);
+  await expect(forgotPasswordLink).toBeVisible({ timeout: UI_TIMEOUT });
+  await forgotPasswordLink.click();
   await resetPanel.getByText("Back to log in", { exact: true }).click({ force: true });
 
   await expect(page.locator("input[placeholder='Email']").first()).toBeVisible({ timeout: UI_TIMEOUT });

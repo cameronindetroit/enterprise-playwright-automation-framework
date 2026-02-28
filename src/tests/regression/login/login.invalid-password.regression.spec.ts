@@ -15,17 +15,20 @@ function resolveCredential(value?: string) {
 
 test("Regression | Login rejects incorrect password @regression @smoke", async ({ page }) => {
   const loginPage = new LoginPage(page);
+  const emailInput = page.locator("input[placeholder='Email']").first();
+  const passwordInput = page.locator("input[placeholder='Password']").first();
 
   await loginPage.navigate();
-  await expect(page.getByPlaceholder("Email")).toBeVisible({ timeout: UI_TIMEOUT });
-  await expect(page.getByPlaceholder("Password")).toBeVisible({ timeout: UI_TIMEOUT });
+  await loginPage.waitForLoginForm(UI_TIMEOUT);
+  await expect(emailInput).toBeVisible({ timeout: UI_TIMEOUT });
+  await expect(passwordInput).toBeVisible({ timeout: UI_TIMEOUT });
 
   await loginPage.fillUsername(resolveCredential(process.env.userid));
   await loginPage.fillPassword("invalid-password-for-regression");
   await loginPage.clickLoginButton();
 
   await expect(page.getByText("Sign in to your account below.", { exact: true })).toBeVisible({ timeout: UI_TIMEOUT });
-  await expect(page.getByPlaceholder("Email")).toBeVisible({ timeout: UI_TIMEOUT });
-  await expect(page.getByPlaceholder("Password")).toBeVisible({ timeout: UI_TIMEOUT });
+  await expect(emailInput).toBeVisible({ timeout: UI_TIMEOUT });
+  await expect(passwordInput).toBeVisible({ timeout: UI_TIMEOUT });
   await expect(page.getByText("Events", { exact: true })).toHaveCount(0);
 });
