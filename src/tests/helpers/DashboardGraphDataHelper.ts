@@ -29,6 +29,28 @@ export default class DashboardGraphDataHelper {
     return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
   }
 
+  private static pickExpectedMatchPercent(
+    formulaMatchPercent: number | null,
+    directMatchRate: number | null,
+    uiMatchRatePercent?: number | null,
+  ) {
+    const candidates = [formulaMatchPercent, directMatchRate].filter((value): value is number => value !== null);
+
+    if (candidates.length === 0) {
+      return null;
+    }
+
+    if (uiMatchRatePercent === undefined || uiMatchRatePercent === null) {
+      return formulaMatchPercent ?? directMatchRate;
+    }
+
+    return candidates.reduce((best, current) => {
+      const bestDelta = Math.abs(best - uiMatchRatePercent);
+      const currentDelta = Math.abs(current - uiMatchRatePercent);
+      return currentDelta < bestDelta ? current : best;
+    });
+  }
+
   private static toNumber(value: unknown) {
     const numeric = Number(DashboardKpiDataHelper.toNumericString(value));
     return Number.isFinite(numeric) ? numeric : null;
@@ -164,11 +186,21 @@ export default class DashboardGraphDataHelper {
         continue;
       }
 
+      if (score === 1 && !titleExact) {
+        continue;
+      }
+
       const rankingAverageEventTotal = averageEventTotal ?? -1;
       const rankingAverageIcpRecords = averageIcpRecords ?? -1;
-      const candidateExpectedMatchPercent = averageEventTotal && averageEventTotal > 0
+      const formulaMatchPercent = averageEventTotal && averageEventTotal > 0
         ? ((averageIcpRecords ?? 0) / averageEventTotal) * 100
-        : directMatchRate;
+        : null;
+
+      const candidateExpectedMatchPercent = this.pickExpectedMatchPercent(
+        formulaMatchPercent,
+        directMatchRate,
+        uiMatchRatePercent,
+      );
 
       const candidateMatchRateDelta =
         uiMatchRatePercent !== undefined && uiMatchRatePercent !== null && candidateExpectedMatchPercent !== null
@@ -177,11 +209,11 @@ export default class DashboardGraphDataHelper {
 
       const shouldReplaceBestMatch =
         !bestMatch ||
-        score > bestMatch.score ||
-        (score === bestMatch.score && titleExact && !bestMatch.titleExact) ||
-        (score === bestMatch.score && titleExact === bestMatch.titleExact && candidateMatchRateDelta < bestMatch.matchRateDelta) ||
-        (score === bestMatch.score && titleExact === bestMatch.titleExact && rankingAverageEventTotal > bestMatch.averageEventTotal) ||
-        (score === bestMatch.score && titleExact === bestMatch.titleExact && rankingAverageEventTotal === bestMatch.averageEventTotal && rankingAverageIcpRecords > bestMatch.averageIcpRecords);
+        (titleExact && !bestMatch.titleExact) ||
+        (titleExact === bestMatch.titleExact && candidateMatchRateDelta < bestMatch.matchRateDelta) ||
+        (titleExact === bestMatch.titleExact && candidateMatchRateDelta === bestMatch.matchRateDelta && score > bestMatch.score) ||
+        (titleExact === bestMatch.titleExact && candidateMatchRateDelta === bestMatch.matchRateDelta && score === bestMatch.score && rankingAverageEventTotal > bestMatch.averageEventTotal) ||
+        (titleExact === bestMatch.titleExact && candidateMatchRateDelta === bestMatch.matchRateDelta && score === bestMatch.score && rankingAverageEventTotal === bestMatch.averageEventTotal && rankingAverageIcpRecords > bestMatch.averageIcpRecords);
 
       if (shouldReplaceBestMatch) {
         bestMatch = {
