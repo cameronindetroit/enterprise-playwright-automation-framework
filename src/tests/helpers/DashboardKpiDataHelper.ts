@@ -1,4 +1,4 @@
-import { DASHBOARD_KPI_LABELS, DashboardKpiLabel } from "../../pages/DashboardKpisPage";
+import { DASHBOARD_KPI_LABELS, DashboardKpiLabel } from "../../pages/dashboard/DashboardKpisPage";
 
 type KpiLabelKey = keyof typeof DASHBOARD_KPI_LABELS;
 type KpiLabels = typeof DASHBOARD_KPI_LABELS;

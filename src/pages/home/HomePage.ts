@@ -1,5 +1,5 @@
 import { Page, Locator } from "@playwright/test";
-import logger from "../utils/LoggerUtil";
+import logger from "../../utils/LoggerUtil";
 import ContactAccountAdminModalPage from "./ContactAccountAdminModalPage";
 
 export default class HomePage {

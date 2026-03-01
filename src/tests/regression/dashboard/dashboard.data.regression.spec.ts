@@ -1,6 +1,6 @@
 import { test, expect } from "./dashboardRegression.fixtures";
 import DashboardE2EHelper from "../../helpers/DashboardE2EHelper";
-import { DASHBOARD_KPI_LABELS } from "../../../pages/DashboardKpisPage";
+import { DASHBOARD_KPI_LABELS } from "../../../pages/dashboard/DashboardKpisPage";
 import DashboardKpiDataHelper from "../../helpers/DashboardKpiDataHelper";
 
 const UI_TIMEOUT = 20000;

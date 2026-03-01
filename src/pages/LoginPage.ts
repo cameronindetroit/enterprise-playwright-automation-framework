@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import HomePage from "./HomePage";
+import HomePage from "./home/HomePage";
 
 export default class LoginPage {
 private readonly usernameInputSelector = "[placeholder='Email']"

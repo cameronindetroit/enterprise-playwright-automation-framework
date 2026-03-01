@@ -1,15 +1,15 @@
 import { Page } from "@playwright/test";
 import LoginPage from "./LoginPage";
-import HomePage from "./HomePage";
+import HomePage from "./home/HomePage";
 import EventPage from "./EventPage";
 import ICPPage from "./ICPPage";
-import DataRequestPage from "./DataRequestPage";
+import DataRequestPage from "./dashboard/DataRequestPage";
 import SettingsPage from "./SettingsPage";
-import FAQPage from "./FAQPage";
-import FeatureBugRequestPage from "./FeatureBugRequestPage";
-import DashboardPage from "./DashboardPage";
-import DashboardKpisPage from "./DashboardKpisPage";
-import DashboardGraphPage from "./DashboardGraphPage";
+import FAQPage from "./home/FAQPage";
+import FeatureBugRequestPage from "./home/FeatureBugRequestPage";
+import DashboardPage from "./dashboard/DashboardPage";
+import DashboardKpisPage from "./dashboard/DashboardKpisPage";
+import DashboardGraphPage from "./dashboard/DashboardGraphPage";
 
 export default class PageManager {
   private loginPage?: LoginPage;
