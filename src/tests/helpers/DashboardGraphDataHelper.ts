@@ -57,33 +57,26 @@ export default class DashboardGraphDataHelper {
   }
 
   private static findValueByAliases(payload: unknown, aliases: readonly string[]): unknown {
-    if (!this.isRecord(payload) && !Array.isArray(payload)) {
+    if (!this.isRecord(payload)) {
       return undefined;
     }
 
     const normalizedAliases = aliases.map((alias) => this.normalizeKey(alias));
-    const queue: unknown[] = [payload];
-
-    while (queue.length > 0) {
-      const current = queue.shift();
-
-      if (Array.isArray(current)) {
-        queue.push(...current);
+    for (const [key, value] of Object.entries(payload)) {
+      if (!normalizedAliases.includes(this.normalizeKey(key))) {
         continue;
       }
 
-      if (!this.isRecord(current)) {
-        continue;
+      if (typeof value === "string" && value.trim().length > 0) {
+        return value;
       }
 
-      for (const [key, value] of Object.entries(current)) {
-        if (normalizedAliases.includes(this.normalizeKey(key)) && DashboardKpiDataHelper.toNumericString(value)) {
-          return value;
-        }
+      if (typeof value === "number" && Number.isFinite(value)) {
+        return value;
+      }
 
-        if (this.isRecord(value) || Array.isArray(value)) {
-          queue.push(value);
-        }
+      if (DashboardKpiDataHelper.toNumericString(value)) {
+        return value;
       }
     }
 
