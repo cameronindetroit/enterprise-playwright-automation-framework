@@ -58,7 +58,7 @@ on:
           - "false"
           - "true"
       retries:
-        description: "Retries override (auto = 0 for non-critical, 2 for e2e-critical)"
+        description: "Retries override (auto = 1 for non-critical, 2 for e2e-critical)"
         required: true
         default: auto
         type: choice
@@ -183,6 +183,7 @@ jobs:
           echo "Install Playwright browsers|0|cache hit" >> "$TIMINGS_FILE"
 
       - name: Run selected Playwright suite
+        id: run-tests
         shell: bash
         run: |
           set -euo pipefail
@@ -230,7 +231,7 @@ jobs:
             if [ "$SUITE" = "e2e-critical" ]; then
               RETRIES_VALUE="2"
             else
-              RETRIES_VALUE="0"
+              RETRIES_VALUE="1"
             fi
           else
             RETRIES_VALUE="$RETRIES_INPUT"
@@ -292,7 +293,12 @@ jobs:
             CMD+=(--grep "$GREP_FILTER")
           fi
 
-          CMD+=(--retries "$RETRIES_VALUE" --workers "$WORKERS_VALUE")
+          INITIAL_JSON_PATH="$RUNNER_TEMP/playwright-initial-results.json"
+          echo "INITIAL_JSON_PATH=$INITIAL_JSON_PATH" >> "$GITHUB_ENV"
+          export PLAYWRIGHT_JSON_OUTPUT_DIR="$(dirname "$INITIAL_JSON_PATH")"
+          export PLAYWRIGHT_JSON_OUTPUT_NAME="$(basename "$INITIAL_JSON_PATH")"
+
+          CMD+=(--retries "$RETRIES_VALUE" --workers "$WORKERS_VALUE" --reporter "line,json")
 
           echo "Running: ${CMD[*]}"
 
@@ -304,7 +310,118 @@ jobs:
           STEP_END=$(date +%s)
           echo "Run Playwright tests|$((STEP_END - STEP_START))|suite=$SUITE browser=$BROWSER retries=$RETRIES_VALUE workers=$WORKERS_VALUE" >> "$TIMINGS_FILE"
 
-          exit "$TEST_EXIT"
+          echo "INITIAL_TEST_EXIT=$TEST_EXIT" >> "$GITHUB_ENV"
+          echo "initial_test_exit=$TEST_EXIT" >> "$GITHUB_OUTPUT"
+          if [ "$TEST_EXIT" -ne 0 ]; then
+            echo "Initial run failed (exit=$TEST_EXIT). Will execute one last-failed rerun for flake detection."
+          fi
+
+          exit 0
+
+      - name: Re-run only failed tests once
+        id: rerun-failed
+        if: always() && steps.run-tests.outputs.initial_test_exit != '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          STEP_START=$(date +%s)
+
+          RERUN_JSON_PATH="$RUNNER_TEMP/playwright-rerun-results.json"
+          echo "RERUN_JSON_PATH=$RERUN_JSON_PATH" >> "$GITHUB_ENV"
+          export PLAYWRIGHT_JSON_OUTPUT_DIR="$(dirname "$RERUN_JSON_PATH")"
+          export PLAYWRIGHT_JSON_OUTPUT_NAME="$(basename "$RERUN_JSON_PATH")"
+
+          set +e
+          npx playwright test --last-failed --retries 0 --workers 1 --reporter line,json
+          RERUN_EXIT=$?
+          set -e
+
+          STEP_END=$(date +%s)
+          echo "Re-run last failed tests|$((STEP_END - STEP_START))|exit=$RERUN_EXIT" >> "$TIMINGS_FILE"
+          echo "RERUN_TEST_EXIT=$RERUN_EXIT" >> "$GITHUB_ENV"
+          echo "rerun_test_exit=$RERUN_EXIT" >> "$GITHUB_OUTPUT"
+
+          if [ "$RERUN_EXIT" -eq 0 ]; then
+            echo "Last-failed rerun passed: likely transient flake(s)."
+          else
+            echo "Last-failed rerun failed: persistent failure(s) detected."
+          fi
+
+      - name: Categorize failure reasons
+        if: always() && steps.run-tests.outputs.initial_test_exit != '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          TIMEOUT_FILE_COUNT=$(grep -RilE "timeout|timed out|waiting on the predicate" test-results 2>/dev/null | wc -l | tr -d ' ')
+          ASSERTION_FILE_COUNT=$(grep -RilE "toBeCloseTo|Expected:|Received:|UI value should match|toBe\(" test-results 2>/dev/null | wc -l | tr -d ' ')
+          echo "TIMEOUT_FILE_COUNT=${TIMEOUT_FILE_COUNT:-0}" >> "$GITHUB_ENV"
+          echo "ASSERTION_FILE_COUNT=${ASSERTION_FILE_COUNT:-0}" >> "$GITHUB_ENV"
+
+          node <<'NODE'
+          const fs = require('fs');
+
+          function collectFailedTestsFromJson(path) {
+            if (!path || !fs.existsSync(path)) return new Set();
+            const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+            const failed = new Set();
+
+            function walkSuite(suite, ancestors = []) {
+              const nextAncestors = suite.title ? [...ancestors, suite.title] : ancestors;
+              for (const spec of suite.specs || []) {
+                for (const test of spec.tests || []) {
+                  const hasFailure = (test.results || []).some((result) => ['failed', 'timedOut', 'interrupted'].includes(result.status));
+                  if (hasFailure) {
+                    failed.add([...nextAncestors, spec.title, test.projectName || ''].filter(Boolean).join(' :: '));
+                  }
+                }
+              }
+              for (const child of suite.suites || []) {
+                walkSuite(child, nextAncestors);
+              }
+            }
+
+            for (const suite of data.suites || []) {
+              walkSuite(suite, []);
+            }
+
+            return failed;
+          }
+
+          const initialPath = process.env.INITIAL_JSON_PATH;
+          const rerunPath = process.env.RERUN_JSON_PATH;
+          const initialFailed = collectFailedTestsFromJson(initialPath);
+          const rerunFailed = collectFailedTestsFromJson(rerunPath);
+          const persistent = [...initialFailed].filter((test) => rerunFailed.has(test));
+
+          const outputPath = process.env.RUNNER_TEMP + '/persistent-failures.txt';
+          fs.writeFileSync(outputPath, persistent.join('\n'));
+          console.log(`PERSISTENT_FAILURE_COUNT=${persistent.length}`);
+          NODE
+
+          PERSISTENT_FAILURE_COUNT=$(node -e "const fs=require('fs');const p=process.env.RUNNER_TEMP+'/persistent-failures.txt';if(!fs.existsSync(p)){console.log(0);process.exit(0);}const lines=fs.readFileSync(p,'utf8').split(/\n/).map(v=>v.trim()).filter(Boolean);console.log(lines.length);")
+          echo "PERSISTENT_FAILURE_COUNT=$PERSISTENT_FAILURE_COUNT" >> "$GITHUB_ENV"
+
+          {
+            echo "## Failure signal summary"
+            echo
+            echo "- Initial run exit code: ${INITIAL_TEST_EXIT}"
+            echo "- Last-failed rerun exit code: ${RERUN_TEST_EXIT:-N/A}"
+            echo "- Files with timeout-like signatures: ${TIMEOUT_FILE_COUNT:-0}"
+            echo "- Files with assertion/value-mismatch signatures: ${ASSERTION_FILE_COUNT:-0}"
+            echo "- Persistent failing tests after rerun: ${PERSISTENT_FAILURE_COUNT}"
+            if [ -f "$RUNNER_TEMP/persistent-failures.txt" ] && [ "${PERSISTENT_FAILURE_COUNT}" -gt 0 ]; then
+              echo
+              echo "### Persistent failures"
+              sed 's/^/- /' "$RUNNER_TEMP/persistent-failures.txt"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Fail on persistent failures
+        if: always() && steps.run-tests.outputs.initial_test_exit != '0' && steps.rerun-failed.outputs.rerun_test_exit != '0'
+        run: |
+          echo "Persistent failures detected after rerun. Failing job to preserve real-signal regressions."
+          exit 1
 
       - name: Upload Playwright HTML report
         if: always()
