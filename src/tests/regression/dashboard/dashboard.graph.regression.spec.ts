@@ -43,15 +43,25 @@ test("Regression | Graph container title and ICP Match Rate align with API event
   const dashboardDataPayload = await dashboardDataResponse.json();
 
   await expect(dashboardGraphPage.getGraphContainer()).toBeVisible({ timeout: UI_TIMEOUT });
-  await expect(dashboardGraphPage.getGraphContainer()).toContainText(selectedEvent, { timeout: UI_TIMEOUT });
+  await expect
+    .poll(async () => {
+      const graphContainerText = await dashboardGraphPage.getGraphContainerText();
+      const graphEventTitle = DashboardGraphDataHelper.extractGraphEventTitle(graphContainerText);
+      const uiIcpMatchRatePercent = await dashboardGraphPage.getIcpMatchRatePercentageValue();
+      const normalizedSelectedEvent = DashboardGraphDataHelper.normalizeTitle(selectedEvent);
+      const normalizedGraphTitle = DashboardGraphDataHelper.normalizeTitle(graphEventTitle || graphContainerText);
+
+      return (
+        normalizedSelectedEvent.length > 0 &&
+        normalizedGraphTitle.includes(normalizedSelectedEvent) &&
+        uiIcpMatchRatePercent !== null
+      );
+    }, { timeout: API_TIMEOUT })
+    .toBeTruthy();
 
   const graphContainerText = await dashboardGraphPage.getGraphContainerText();
   const graphEventTitle = DashboardGraphDataHelper.extractGraphEventTitle(graphContainerText);
   const eventLookupTitle = graphEventTitle || selectedEvent;
-
-  await expect
-    .poll(async () => (await dashboardGraphPage.getIcpMatchRatePercentageValue()) !== null, { timeout: API_TIMEOUT })
-    .toBeTruthy();
 
   const uiIcpMatchRatePercent = await dashboardGraphPage.getIcpMatchRatePercentageValue();
   expect(uiIcpMatchRatePercent, "UI ICP Match Rate percentage value is missing.").not.toBeNull();
@@ -77,9 +87,22 @@ test("Regression | Graph container title and ICP Match Rate align with API event
     return;
   }
 
-  expect(uiIcpMatchRatePercent!).toBeCloseTo(expectedMatchPercent, 0);
+  await expect
+    .poll(async () => {
+      const currentUiIcpMatchRatePercent = await dashboardGraphPage.getIcpMatchRatePercentageValue();
+      if (currentUiIcpMatchRatePercent === null) {
+        return false;
+      }
+
+      return Math.abs(currentUiIcpMatchRatePercent - expectedMatchPercent) < 0.5;
+    }, { timeout: API_TIMEOUT })
+    .toBeTruthy();
+
+  const finalUiIcpMatchRatePercent = await dashboardGraphPage.getIcpMatchRatePercentageValue();
+  expect(finalUiIcpMatchRatePercent, "UI ICP Match Rate percentage value is missing after stabilization wait.").not.toBeNull();
+  expect(finalUiIcpMatchRatePercent!).toBeCloseTo(expectedMatchPercent, 0);
 
   console.log(
-    `[GRAPH-MATCH] selected_event=${selectedEvent} | graph_title=${eventLookupTitle} | avg_icp_records=${eventMetrics!.averageIcpRecords} | average_event_total=${eventMetrics!.averageEventTotal} | API_EXPECTED=${expectedMatchPercent.toFixed(2)}% | UI=${uiIcpMatchRatePercent}%`,
+    `[GRAPH-MATCH] selected_event=${selectedEvent} | graph_title=${eventLookupTitle} | avg_icp_records=${eventMetrics!.averageIcpRecords} | average_event_total=${eventMetrics!.averageEventTotal} | API_EXPECTED=${expectedMatchPercent.toFixed(2)}% | UI=${finalUiIcpMatchRatePercent}%`,
   );
 });
