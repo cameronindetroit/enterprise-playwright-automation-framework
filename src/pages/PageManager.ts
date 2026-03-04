@@ -26,6 +26,10 @@ export default class PageManager {
 
   constructor(private page: Page) {}
 
+  getPage() {
+    return this.page;
+  }
+
   getLoginPage() {
     if (!this.loginPage) {
       this.loginPage = new LoginPage(this.page);
