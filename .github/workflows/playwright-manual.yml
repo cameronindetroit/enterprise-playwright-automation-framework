@@ -353,8 +353,8 @@ jobs:
         run: |
           set -euo pipefail
 
-          TIMEOUT_FILE_COUNT=$(grep -RilE "timeout|timed out|waiting on the predicate" test-results 2>/dev/null | wc -l | tr -d ' ')
-          ASSERTION_FILE_COUNT=$(grep -RilE "toBeCloseTo|Expected:|Received:|UI value should match|toBe\(" test-results 2>/dev/null | wc -l | tr -d ' ')
+          TIMEOUT_FILE_COUNT=$( (grep -RilE "timeout|timed out|waiting on the predicate" test-results 2>/dev/null || true) | wc -l | tr -d ' ' )
+          ASSERTION_FILE_COUNT=$( (grep -RilE "toBeCloseTo|Expected:|Received:|UI value should match|toBe\(" test-results 2>/dev/null || true) | wc -l | tr -d ' ' )
           echo "TIMEOUT_FILE_COUNT=${TIMEOUT_FILE_COUNT:-0}" >> "$GITHUB_ENV"
           echo "ASSERTION_FILE_COUNT=${ASSERTION_FILE_COUNT:-0}" >> "$GITHUB_ENV"
 
@@ -362,9 +362,24 @@ jobs:
           const fs = require('fs');
 
           function collectFailedTestsFromJson(path) {
-            if (!path || !fs.existsSync(path)) return new Set();
+            if (!path || !fs.existsSync(path)) return new Map();
             const data = JSON.parse(fs.readFileSync(path, 'utf8'));
-            const failed = new Set();
+            const failed = new Map();
+
+            function isSystemDegradedFailure(test) {
+              const allMessages = [];
+              for (const result of test.results || []) {
+                if (result?.error?.message) {
+                  allMessages.push(result.error.message);
+                }
+                for (const err of result.errors || []) {
+                  if (err?.message) {
+                    allMessages.push(err.message);
+                  }
+                }
+              }
+              return allMessages.some((message) => message.includes('SYSTEM_DEGRADED_LOGIN_TIMEOUT'));
+            }
 
             function walkSuite(suite, ancestors = []) {
               const nextAncestors = suite.title ? [...ancestors, suite.title] : ancestors;
@@ -372,7 +387,12 @@ jobs:
                 for (const test of spec.tests || []) {
                   const hasFailure = (test.results || []).some((result) => ['failed', 'timedOut', 'interrupted'].includes(result.status));
                   if (hasFailure) {
-                    failed.add([...nextAncestors, spec.title, test.projectName || ''].filter(Boolean).join(' :: '));
+                    const testName = [...nextAncestors, spec.title, test.projectName || ''].filter(Boolean).join(' :: ');
+                    const hasSystemTag = isSystemDegradedFailure(test);
+                    const previous = failed.get(testName);
+                    failed.set(testName, {
+                      systemDegraded: Boolean(previous?.systemDegraded || hasSystemTag),
+                    });
                   }
                 }
               }
@@ -392,15 +412,23 @@ jobs:
           const rerunPath = process.env.RERUN_JSON_PATH;
           const initialFailed = collectFailedTestsFromJson(initialPath);
           const rerunFailed = collectFailedTestsFromJson(rerunPath);
-          const persistent = [...initialFailed].filter((test) => rerunFailed.has(test));
+          const persistent = [...initialFailed.keys()].filter((test) => rerunFailed.has(test));
+          const persistentSystem = persistent.filter((test) => {
+            return Boolean(rerunFailed.get(test)?.systemDegraded || initialFailed.get(test)?.systemDegraded);
+          });
 
           const outputPath = process.env.RUNNER_TEMP + '/persistent-failures.txt';
+          const systemOutputPath = process.env.RUNNER_TEMP + '/persistent-system-failures.txt';
           fs.writeFileSync(outputPath, persistent.join('\n'));
+          fs.writeFileSync(systemOutputPath, persistentSystem.join('\n'));
           console.log(`PERSISTENT_FAILURE_COUNT=${persistent.length}`);
+          console.log(`PERSISTENT_SYSTEM_FAILURE_COUNT=${persistentSystem.length}`);
           NODE
 
           PERSISTENT_FAILURE_COUNT=$(node -e "const fs=require('fs');const p=process.env.RUNNER_TEMP+'/persistent-failures.txt';if(!fs.existsSync(p)){console.log(0);process.exit(0);}const lines=fs.readFileSync(p,'utf8').split(/\n/).map(v=>v.trim()).filter(Boolean);console.log(lines.length);")
+          PERSISTENT_SYSTEM_FAILURE_COUNT=$(node -e "const fs=require('fs');const p=process.env.RUNNER_TEMP+'/persistent-system-failures.txt';if(!fs.existsSync(p)){console.log(0);process.exit(0);}const lines=fs.readFileSync(p,'utf8').split(/\n/).map(v=>v.trim()).filter(Boolean);console.log(lines.length);")
           echo "PERSISTENT_FAILURE_COUNT=$PERSISTENT_FAILURE_COUNT" >> "$GITHUB_ENV"
+          echo "PERSISTENT_SYSTEM_FAILURE_COUNT=$PERSISTENT_SYSTEM_FAILURE_COUNT" >> "$GITHUB_ENV"
 
           {
             echo "## Failure signal summary"
@@ -410,10 +438,16 @@ jobs:
             echo "- Files with timeout-like signatures: ${TIMEOUT_FILE_COUNT:-0}"
             echo "- Files with assertion/value-mismatch signatures: ${ASSERTION_FILE_COUNT:-0}"
             echo "- Persistent failing tests after rerun: ${PERSISTENT_FAILURE_COUNT}"
+            echo "- Persistent system/infra failures after rerun: ${PERSISTENT_SYSTEM_FAILURE_COUNT}"
             if [ -f "$RUNNER_TEMP/persistent-failures.txt" ] && [ "${PERSISTENT_FAILURE_COUNT}" -gt 0 ]; then
               echo
               echo "### Persistent failures"
               sed 's/^/- /' "$RUNNER_TEMP/persistent-failures.txt"
+            fi
+            if [ -f "$RUNNER_TEMP/persistent-system-failures.txt" ] && [ "${PERSISTENT_SYSTEM_FAILURE_COUNT}" -gt 0 ]; then
+              echo
+              echo "### Persistent system/infra failures"
+              sed 's/^/- /' "$RUNNER_TEMP/persistent-system-failures.txt"
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
